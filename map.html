@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peta Persebaran Banjir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <div id="map"></div>
+
+  <div class="search-container">
+    <div class="input-group shadow-sm">
+      <span class="input-group-text bg-dark border-secondary text-light">
+        <i class="ri-search-line"></i>
+      </span>
+      <input type="text" id="searchBox" class="form-control bg-dark border-secondary text-light" placeholder="Cari Kecamatan / Jalan...">
+      <button class="btn btn-primary" type="button" id="btnSearch">Cari</button>
+    </div>
+  </div>
+
+  <div class="map-sidebar">
+    <div class="sidebar-header mb-3">
+      <h6 class="text-white text-uppercase fw-bold m-0">
+        <i class="ri-settings-3-line me-1"></i> Control Panel
+      </h6>
+    </div>
+
+    <div class="control-group mb-4">
+      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Layer Data</label>
+      
+      <div class="form-check form-switch mb-2">
+        <input class="form-check-input" type="checkbox" id="polygon" checked>
+        <label class="form-check-label text-light small" for="polygon">Area Riau (Polygon)</label>
+      </div>
+      
+      <div class="form-check form-switch mb-2">
+        <input class="form-check-input" type="checkbox" id="point" checked>
+        <label class="form-check-label text-light small" for="point">
+          <img src="icon/downpour.png" width="16" class="me-1"> Titik Banjir
+        </label>
+      </div>
+
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="point2" checked>
+        <label class="form-check-label text-light small" for="point2">
+          <img src="icon/banjir-icon.png" width="16" class="me-1"> Titik Genangan
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group mb-4">
+      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Tipe Peta</label>
+      <select class="form-select form-select-sm bg-dark text-light border-secondary" id="basemapSelect">
+        <option value="osm">OpenStreetMap (Standar)</option>
+        <option value="sate">Satelit (Esri World)</option>
+        <option value="dark">Dark Mode (CartoDB)</option>
+      </select>
+    </div>
+
+    <hr class="border-secondary">
+
+    <div>
+      <label class="text-muted text-uppercase small fw-bold" style="font-size: 0.75rem;">Info Kursor</label>
+      <div id="info" class="text-info fw-bold mt-1 small">
+        Arahkan kursor ke peta...
+      </div>
+    </div>
+  </div>
+
+  <div class="map-utilities">
+    <button class="btn btn-dark border-secondary shadow mb-2" id="btnLocate" title="Lokasi Saya">
+      <i class="ri-gps-fill text-primary"></i>
+    </button>
+    <button class="btn btn-dark border-secondary shadow" id="btnHome" title="Reset View">
+      <i class="ri-home-4-fill"></i>
+    </button>
+  </div>
+
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+  <script src="components/Navbar.js"></script>
+</body>
+</html>

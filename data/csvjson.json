@@ -1,0 +1,1321 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413367, 0.516669]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516669,
+        "long": 101.413367
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413399, 0.516703]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516703,
+        "long": 101.413399
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.41341, 0.516691]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516691,
+        "long": 101.41341
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413403, 0.516675]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Duyung, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516675,
+        "long": 101.413403
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413359, 0.516647]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516647,
+        "long": 101.413359
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413188, 0.516585]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516585,
+        "long": 101.413188
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413185, 0.516508]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516508,
+        "long": 101.413185
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413163, 0.516487]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516487,
+        "long": 101.413163
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413155, 0.516474]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516474,
+        "long": 101.413155
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413091, 0.516402]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Nilam Sakti, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516402,
+        "long": 101.413091
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.412992, 0.516425]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516425,
+        "long": 101.412992
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413006, 0.516441]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516441,
+        "long": 101.413006
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413021, 0.516452]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516452,
+        "long": 101.413021
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.413054, 0.516463]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.516463,
+        "long": 101.413054
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411804, 0.515252]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515252,
+        "long": 101.411804
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411817, 0.515268]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515268,
+        "long": 101.411817
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.41181, 0.515288]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515288,
+        "long": 101.41181
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411455, 0.515096]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515096,
+        "long": 101.411455
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411331, 0.515037]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515037,
+        "long": 101.411331
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411337, 0.515023]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515023,
+        "long": 101.411337
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411281, 0.515017]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515017,
+        "long": 101.411281
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.411277, 0.515006]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.515006,
+        "long": 101.411277
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.4048, 0.514995]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Sepakat, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.514995,
+        "long": 101.4048
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.404800, 0.522623]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.522623,
+        "long": 101.404800
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.404725, 0.522895]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.522895,
+        "long": 101.404725
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406273, 0.531596]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.531596,
+        "long": 101.406273
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406283, 0.531629]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.531629,
+        "long": 101.406283
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406333, 0.530947]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.530947,
+        "long": 101.406333
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.404667, 0.523357]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.523357,
+        "long": 101.404667
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.404679, 0.523184]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.523184,
+        "long": 101.404679
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.404707, 0.523098]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 282292",
+        "lat": 0.523098,
+        "long": 101.404707
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.38465, 0.438455]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438455,
+        "long": 101.38465
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384315, 0.438635]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438635,
+        "long": 101.384315
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.38319, 0.438645]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438645,
+        "long": 101.38319
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384342, 0.43865]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.43865,
+        "long": 101.384342
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384319, 0.438645]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438645,
+        "long": 101.384319
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384321, 0.438609]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438609,
+        "long": 101.384321
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 38,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384321, 0.438603]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438603,
+        "long": 101.384321
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384319, 0.43587]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.43587,
+        "long": 101.384319
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 40,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384251, 0.438449]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438449,
+        "long": 101.384251
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 41,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384221, 0.438324]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438324,
+        "long": 101.384221
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 42,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384221, 0.438324]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438324,
+        "long": 101.384221
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 43,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384265, 0.438125]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.438125,
+        "long": 101.384265
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.3843, 0.43811]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.43811,
+        "long": 101.3843
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 45,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383955, 0.437529]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437529,
+        "long": 101.383955
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 46,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383892, 0.437373]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437373,
+        "long": 101.383892
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 47,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383829, 0.437127]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437127,
+        "long": 101.383829
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 48,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.38394, 0.437081]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437081,
+        "long": 101.38394
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 49,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383831, 0.437018]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437018,
+        "long": 101.383831
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 50,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383824, 0.437001]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.437001,
+        "long": 101.383824
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 51,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383793, 0.436934]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.436934,
+        "long": 101.383793
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 52,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383804, 0.436703]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.436703,
+        "long": 101.383804
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 53,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383795, 0.436669]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.436669,
+        "long": 101.383795
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.383787, 0.43662]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.43662,
+        "long": 101.383787
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 55,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.382524, 0.433237]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani (Tampan)",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau, 28685",
+        "lat": 0.433237,
+        "long": 101.382524
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 56,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429031, 0.53754]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.53754,
+        "long": 101.429031
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 57,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429021, 0.537375]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537375,
+        "long": 101.429021
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 58,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429055, 0.537299]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537299,
+        "long": 101.429055
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429016, 0.537132]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537132,
+        "long": 101.429016
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429004, 0.537016]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537016,
+        "long": 101.429004
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 61,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428991, 0.53693]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.53693,
+        "long": 101.428991
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428958, 0.536883]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536883,
+        "long": 101.428958
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428933, 0.536798]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536798,
+        "long": 101.428933
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428813, 0.5365971]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.5365971,
+        "long": 101.428813
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428816, 0.536729]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536729,
+        "long": 101.428816
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.42886, 0.536872]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536872,
+        "long": 101.42886
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.42892, 0.536854]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536854,
+        "long": 101.42892
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.428984, 0.537023]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537023,
+        "long": 101.428984
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429016, 0.537069]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537069,
+        "long": 101.429016
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.42905, 0.537047]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537047,
+        "long": 101.42905
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429156, 0.537026]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537026,
+        "long": 101.429156
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429184, 0.537026]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537026,
+        "long": 101.429184
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429223, 0.537045]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537045,
+        "long": 101.429223
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429979, 0.537082]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537082,
+        "long": 101.429979
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429028, 0.537278]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537278,
+        "long": 101.429028
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429032, 0.537309]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.537309,
+        "long": 101.429032
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.429026, 0.53744]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kuras, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.43744,
+        "long": 101.429026
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.441199, 0.539075]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kota Baru, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.539075,
+        "long": 101.441199
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.4412, 0.539062]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kota Baru, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.539062,
+        "long": 101.4412
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 80,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.441285, 0.539056]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kota Baru, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.539056,
+        "long": 101.441285
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 81,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.441168, 0.539068]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kota Baru, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.539068,
+        "long": 101.441168
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 82,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.441088, 0.539093]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Kota Baru, Senapelan, Kota Pekanbaru, Riau 28292",
+        "lat": 0.539093,
+        "long": 101.441088
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 83,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.445677, 0.536203]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Khadijah Ali, Senapela, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536203,
+        "long": 101.445677
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 84,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.445757, 0.536249]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Khadijah Ali, Senapela, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536249,
+        "long": 101.445757
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 85,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.446198, 0.53628]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Khadijah Ali, Senapela, Kota Pekanbaru, Riau 28292",
+        "lat": 0.53628,
+        "long": 101.446198
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 86,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.446262, 0.536299]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Khadijah Ali, Senapela, Kota Pekanbaru, Riau 28292",
+        "lat": 0.536299,
+        "long": 101.446262
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 87,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.446364, 0.53633]
+      },
+      "properties": {
+        "kecamatan": "Senapelan",
+        "jalan": "Jalan Khadijah Ali, Senapela, Kota Pekanbaru, Riau 28292",
+        "lat": 0.53633,
+        "long": 101.446364
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 88,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406289, 0.531675]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.531675,
+        "long": 101.406289
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 89,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406337, 0.531941]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.531941,
+        "long": 101.406337
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 90,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.406355, 0.53274]
+      },
+      "properties": {
+        "kecamatan": "Payung Sekaki",
+        "jalan": "Jalan Karya Indah, Payung Sekaki, Kota Pekanbaru, Riau 28292",
+        "lat": 0.53274,
+        "long": 101.406355
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 91,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384281, 0.438561]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau 28685",
+        "lat": 0.438561,
+        "long": 101.384281
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 92,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384385, 0.438732]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau 28685",
+        "lat": 0.438732,
+        "long": 101.384385
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 93,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384393, 0.438706]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau 28685",
+        "lat": 0.438706,
+        "long": 101.384393
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 94,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.384347, 0.438641]
+      },
+      "properties": {
+        "kecamatan": "Tuah Madani",
+        "jalan": "Jalan Suka Karya, Tuah Madani, Kota Pekanbaru, Riau 28685",
+        "lat": 0.438641,
+        "long": 101.384347
+      }
+    }
+  ]
+}

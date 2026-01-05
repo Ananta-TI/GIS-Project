@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodGuard AI | Sistem Monitoring Banjir Riau</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="navbar-root"></div>
+
+    <!-- Background Gradient -->
+    <div class="bg-gradient">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navbar -->
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left Content -->
+                <div class="hero-content">
+                    <div class="badge">
+                        <span class="pulse-dot"></span>
+                        WebGIS Riau v1.0
+                    </div>
+
+                    <h1 class="hero-title">
+                        Peta Digital Sebaran <span class="gradient-text">Titik Banjir & Genangan.</span>
+                    </h1>
+
+                    <p class="hero-desc">
+                        Platform visualisasi geospasial yang memetakan titik rawan banjir dan genangan air di Provinsi
+                        Riau berdasarkan data historis dan survei lapangan.
+                    </p>
+
+                    <div class="btn-group">
+                        <!-- From Uiverse.io by TISEPSE -->
+                        <button class="btn-magnetic">
+                            <div class="tombol " href="map.html"><span>Lihat Peta</span></div>
+                        </button>
+
+                        <!-- From Uiverse.io by TISEPSE -->
+                        <button class="btn-magnetic">
+                            <div class="tombol" href="map.html"><span>Tentang Data</span></div>
+                        </button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>500+</h4>
+                            <small>Titik Data</small>
+                        </div>
+                        <div class="stat-item">
+                            <h4>GeoJSON</h4>
+                            <small>Format Data</small>
+                        </div>
+                        <div class="stat-item">
+                            <h4 class="gradient-text">Riau</h4>
+                            <small>Cakupan Area</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Dashboard Mockup -->
+                <div class="dashboard-wrapper">
+                    <div class="dashboard-card" id="tiltCard">
+                        <div class="mockup-header">
+                            <div class="mockup-dots">
+                                <span class="dot" style="background: #ef4444;"></span>
+                                <span class="dot" style="background: #eab308;"></span>
+                                <span class="dot" style="background: #22c55e;"></span>
+                            </div>
+                            <small style="color: var(--text-muted);">peta_sebaran_banjir.html</small>
+                        </div>
+
+                        <div class="map-area">
+                            <div class="map-grid"></div>
+                            <i class="ri-stack-line" style="font-size: 5rem; opacity: 0.2;"></i>
+
+                            <i class="ri-map-pin-fill map-pin pin-1"></i>
+                            <i class="ri-map-pin-fill map-pin pin-2"></i>
+                            <i class="ri-map-pin-fill map-pin pin-3"></i>
+                        </div>
+
+                        <div class="floating-widget widget-alert">
+                            <div class="widget-header">
+                                <i class="ri-file-list-3-fill" style="color: var(--primary);"></i>
+                                Info Lokasi
+                            </div>
+                            <div class="widget-content">
+                                Kec: Payung Sekaki<br>
+                                Status: Rawan Genangan
+                            </div>
+                        </div>
+
+                        <div class="floating-widget widget-stat">
+                            <div class="widget-header">
+                                <i class="ri-pie-chart-fill" style="color: var(--secondary);"></i>
+                                Total Korban
+                            </div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">1.250 Jiwa</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card feature-large ">
+                    <div class="icon-box btn-magnetic">
+                        <i class="ri-layers-fill "></i>
+                    </div>
+                    <h3>Multi-Layer Visualization</h3>
+                    <p>
+                        Integrasi data Polygon Provinsi, Titik Banjir, dan Titik Genangan dalam satu tampilan peta
+                        interaktif menggunakan OpenLayers.
+                    </p>
+                    <i class="ri-map-2-fill feature-icon-bg"></i>
+                </div>
+
+                <div class="feature-card feature-small">
+                    <div class="icon-box btn-magnetic"
+                        style="background: rgba(244, 63, 94, 0.1); color: var(--accent);">
+                        <i class="ri-window-line"></i>
+                    </div>
+                    <h4>Popup Informasi</h4>
+                    <p>Klik pada titik marker untuk melihat detail kecamatan, jalan, dan jumlah terdampak.</p>
+                </div>
+
+                <div class="feature-card feature-small">
+                    <div class="icon-box btn-magnetic">
+                        <i class="ri-code-s-slash-line"></i>
+                    </div>
+                    <h4>Format GeoJSON</h4>
+                    <p>Data spasial disimpan dalam format standar JSON yang ringan dan mudah diintegrasikan.</p>
+                </div>
+
+                <div class="feature-card feature-large">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3>Database Terintegrasi</h3>
+                            <p>Kumpulan data hasil survei lapangan dan laporan kejadian banjir di berbagai wilayah Riau.
+                            </p>
+                        </div>
+                        <a href="map.html" class="btn btn-outline"
+                            style="width: 48px; height: 48px; padding: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-section" style="position: relative; padding: 100px 0; overflow: hidden;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="badge mb-3">
+                        <span class="pulse-dot" style="background: var(--accent, #f43f5e);"></span>
+                        Latar Belakang
+                    </div>
+                    <h2 class="section-title mb-4" style="font-size: 2.5rem; font-weight: 700;">
+                        Mengubah Data Menjadi <br>
+                        <span class="gradient-text">Aksi Mitigasi.</span>
+                    </h2>
+                    <p class="text-muted mb-4" style="font-size: 1.1rem; line-height: 1.8;">
+                        Provinsi Riau sering menghadapi tantangan hidrometeorologi. <strong>FloodGuard AI</strong> hadir
+                        bukan hanya sebagai peta, tetapi sebagai sistem pendukung keputusan.
+                    </p>
+                    <p class="text-muted mb-5" style="font-size: 1.1rem; line-height: 1.8;">
+                        Kami mengumpulkan data historis banjir dan memadukannya dengan survei lapangan topografi untuk
+                        menghasilkan visualisasi risiko yang akurat bagi pemerintah dan masyarakat.
+                    </p>
+
+                    <div class="mission-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="mission-item p-3"
+                            style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h5 style="color: #fff;">🎯 Presisi</h5>
+                            <small class="text-muted">Koordinat GPS akurat hingga 5 meter.</small>
+                        </div>
+                        <div class="mission-item p-3"
+                            style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                            <h5 style="color: #fff;">⚡ Real-time</h5>
+                            <small class="text-muted">Update data berkala paska kejadian.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="about-visual"
+                        style="position: relative; height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div class="circle-bg"
+                            style="position: absolute; width: 300px; height: 300px; border-radius: 50%; border: 2px dashed rgba(255,255,255,0.1); animation: spin 20s linear infinite;">
+                        </div>
+                        <div class="circle-bg-2"
+                            style="position: absolute; width: 450px; height: 450px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.05);">
+                        </div>
+
+                        <div class="glass-card card-1"
+                            style="background: rgba(20, 20, 30, 0.6); backdrop-filter: blur(10px); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); position: absolute; z-index: 2; transform: rotate(-5deg);">
+                            <i class="ri-database-2-fill gradient-text" style="font-size: 2rem;"></i>
+                            <div style="font-weight: bold; margin-top: 10px;">Data Collecting</div>
+                        </div>
+
+                        <div class="glass-card card-2"
+                            style="background: rgba(20, 20, 30, 0.8); backdrop-filter: blur(10px); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); position: absolute; z-index: 3; margin-top: 100px; margin-left: 100px; transform: rotate(5deg);">
+                            <i class="ri-map-2-line" style="font-size: 2rem; color: #22c55e;"></i>
+                            <div style="font-weight: bold; margin-top: 10px;">Mapping</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-section" style="padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden;">
+        
+        <div class="container text-center mb-5">
+            <div class="badge mb-2">Technology Stack</div>
+            <h3 class="gradient-text" style="font-weight: 700;">Powered by Modern Tools</h3>
+        </div>
+
+        <div class="marquee-container" style="display: flex; flex-direction: column; gap: 20px; transform: rotate(-2deg) scale(1.05);">
+            
+            <div class="marquee-track track-left">
+                <div class="marquee-group">
+                    <div class="tech-card"><i class="ri-map-2-line"></i> OpenLayers</div>
+                    <div class="tech-card"><i class="ri-code-s-slash-line"></i> GeoJSON</div>
+                    <div class="tech-card"><i class="ri-bootstrap-line"></i> Bootstrap 5</div>
+                    <div class="tech-card"><i class="ri-javascript-line"></i> GSAP</div>
+                    <div class="tech-card"><i class="ri-earth-line"></i> QGIS</div>
+                    <div class="tech-card"><i class="ri-server-line"></i> NodeJS</div>
+                    <div class="tech-card"><i class="ri-database-2-line"></i> PostgreSQL</div>
+                </div>
+                <div class="marquee-group">
+                    <div class="tech-card"><i class="ri-map-2-line"></i> OpenLayers</div>
+                    <div class="tech-card"><i class="ri-code-s-slash-line"></i> GeoJSON</div>
+                    <div class="tech-card"><i class="ri-bootstrap-line"></i> Bootstrap 5</div>
+                    <div class="tech-card"><i class="ri-javascript-line"></i> GSAP</div>
+                    <div class="tech-card"><i class="ri-earth-line"></i> QGIS</div>
+                    <div class="tech-card"><i class="ri-server-line"></i> NodeJS</div>
+                    <div class="tech-card"><i class="ri-database-2-line"></i> PostgreSQL</div>
+                </div>
+            </div>
+
+            <div class="marquee-track track-right">
+                <div class="marquee-group">
+                    <div class="tech-card filled"><i class="ri-stack-line"></i> Interactive Map</div>
+                    <div class="tech-card filled"><i class="ri-sensor-line"></i> Real-time Data</div>
+                    <div class="tech-card filled"><i class="ri-smartphone-line"></i> Responsive</div>
+                    <div class="tech-card filled"><i class="ri-eye-line"></i> Visualization</div>
+                    <div class="tech-card filled"><i class="ri-cpu-line"></i> AI Analytics</div>
+                </div>
+                <div class="marquee-group">
+                    <div class="tech-card filled"><i class="ri-stack-line"></i> Interactive Map</div>
+                    <div class="tech-card filled"><i class="ri-sensor-line"></i> Real-time Data</div>
+                    <div class="tech-card filled"><i class="ri-smartphone-line"></i> Responsive</div>
+                    <div class="tech-card filled"><i class="ri-eye-line"></i> Visualization</div>
+                    <div class="tech-card filled"><i class="ri-cpu-line"></i> AI Analytics</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="padding: 60px 0 30px; background: rgba(0,0,0,0.3);">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-md-5">
+                    <h4 class="mb-3">FloodGuard AI</h4>
+                    <p class="text-muted">Sistem informasi geografis pemetaan daerah rawan banjir di Provinsi Riau
+                        berbasis Web.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3 text-white">Navigasi</h5>
+                    <ul class="list-unstyled" style="line-height: 2;">
+                        <li><a href="#" class="text-muted text-decoration-none hover-white">Beranda</a></li>
+                        <li><a href="map.html" class="text-muted text-decoration-none hover-white">Peta Digital</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none hover-white">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3 text-white">Kontak</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-btn"><i class="ri-github-fill"></i></a>
+                        <a href="#" class="social-btn"><i class="ri-linkedin-fill"></i></a>
+                        <a href="#" class="social-btn"><i class="ri-mail-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top border-secondary border-opacity-25">
+                <div class="col-12 text-center text-muted">
+                    <small>&copy; 2025 FloodGuard Riau Project. All rights reserved.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Smooth entrance animations
+        const mainTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        mainTl
+            .to('.navbar', { opacity: 1, y: 0, duration: 1 })
+            .to('.hero-content', { opacity: 1, x: 0, duration: 1.2 }, '-=0.7')
+            .to('.dashboard-wrapper', { opacity: 1, x: 0, duration: 1.2 }, '-=1');
+
+        // Stats counter animation
+        gsap.utils.toArray('.stat-item h4').forEach(stat => {
+            const text = stat.textContent;
+            const number = parseInt(text);
+
+            if (!isNaN(number)) {
+                gsap.from(stat, {
+                    textContent: 0,
+                    duration: 2,
+                    delay: 1,
+                    snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: stat,
+                        start: 'top 80%'
+                    }
+                });
+            }
+        });
+
+        // 3D Card tilt effect
+        const card = document.getElementById('tiltCard');
+        const cardWrapper = card.parentElement;
+
+        if (window.innerWidth > 1024) {
+            cardWrapper.addEventListener('mousemove', (e) => {
+                const rect = cardWrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const xRotation = -((y - rect.height / 2) / 15);
+                const yRotation = (x - rect.width / 2) / 15;
+
+                gsap.to(card, {
+                    rotationX: xRotation,
+                    rotationY: yRotation,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    transformPerspective: 1000
+                });
+            });
+
+            cardWrapper.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationX: 5,
+                    rotationY: -15,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            });
+        }
+
+        // Scroll-triggered animations for features
+        gsap.to('.features-grid', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: '.features',
+                start: 'top 70%'
+            }
+        });
+
+        gsap.utils.toArray('.feature-card').forEach((card, i) => {
+            gsap.from(card, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Anime.js for continuous animations
+        anime({
+            targets: '.gradient-orb',
+            translateX: () => anime.random(-50, 50),
+            translateY: () => anime.random(-50, 50),
+            scale: [1, 1.2, 1],
+            duration: 8000,
+            easing: 'easeInOutSine',
+            loop: true
+        });
+
+        anime({
+            targets: '.floating-widget',
+            translateY: [-5, 5],
+            duration: 3000,
+            easing: 'easeInOutSine',
+            loop: true,
+            direction: 'alternate',
+            delay: anime.stagger(500)
+        });
+
+        // Button hover effects
+        // --- 5. MAGNETIC BUTTON EFFECT ---
+        // Efek tombol yang "menempel" ke kursor saat didekati
+        const magnets = document.querySelectorAll('.btn-magnetic');
+        magnets.forEach((magnet) => {
+            magnet.addEventListener('mousemove', (e) => {
+                const rect = magnet.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(magnet, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
+            });
+            magnet.addEventListener('mouseleave', () => {
+                gsap.to(magnet, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+
+        // Smooth gradient orb follow cursor
+        document.addEventListener('mousemove', (e) => {
+            gsap.to('.orb-1', {
+                x: e.clientX * 0.05,
+                y: e.clientY * 0.05,
+                duration: 2,
+                ease: 'power2.out'
+            });
+            gsap.to('.orb-2', {
+                x: -e.clientX * 0.03,
+                y: -e.clientY * 0.03,
+                duration: 2,
+                ease: 'power2.out'
+            });
+        });
+
+        // --- TAMBAHAN ANIMASI UNTUK SECTION BARU --- //
+
+        // 1. Animasi About Section (Text masuk dari kiri)
+        gsap.from('.about-section .col-lg-6:first-child', {
+            x: -50,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: '.about-section',
+                start: 'top 75%'
+            }
+        });
+
+        // 2. Animasi Visual (Kartu-kartu melayang masuk)
+        gsap.from('.glass-card', {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '.about-section',
+                start: 'top 75%'
+            }
+        });
+
+       // --- 3. ADVANCED SCROLL VELOCITY MARQUEE --- //
+    
+    // Fungsi pembantu untuk membuat loop seamless
+    function horizontalLoop(items, config) {
+        items = gsap.utils.toArray(items);
+        config = config || {};
+        let tl = gsap.timeline({repeat: -1, defaults: {ease: "none"}, ...config}),
+            length = items.length,
+            startX = items[0].offsetLeft,
+            times = [],
+            widths = [],
+            xPercents = [],
+            curIndex = 0,
+            pixelsPerSecond = (config.speed || 1) * 100,
+            snap = config.snap === false ? v => v : gsap.utils.snap(config.snap || 1),
+            totalWidth, curX, distanceToStart, distanceToLoop, item, i;
+            
+        // Setup awal posisi
+        gsap.set(items, { 
+            xPercent: (i, el) => {
+                let w = widths[i] = parseFloat(gsap.getProperty(el, "width", "px"));
+                xPercents[i] = snap(parseFloat(gsap.getProperty(el, "x", "px")) / w * 100 + gsap.getProperty(el, "xPercent"));
+                return xPercents[i];
+            }
+        });
+        gsap.set(items, {x: 0});
+        
+        totalWidth = items[length-1].offsetLeft + xPercents[length-1] / 100 * widths[length-1] - startX + items[length-1].offsetWidth * gsap.getProperty(items[length-1], "scaleX") + (parseFloat(config.paddingRight) || 0);
+        
+        for (i = 0; i < length; i++) {
+            item = items[i];
+            curX = xPercents[i] / 100 * widths[i];
+            distanceToStart = item.offsetLeft + curX - startX;
+            distanceToLoop = distanceToStart + totalWidth * gsap.getProperty(item, "scaleX");
+            
+            tl.to(item, {xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond}, 0)
+              .fromTo(item, {xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100)}, {xPercent: xPercents[i], duration: (curX - distanceToStart + totalWidth - curX) / pixelsPerSecond, immediateRender: false}, distanceToLoop / pixelsPerSecond)
+              .add("label" + i, distanceToStart / pixelsPerSecond);
+            times[i] = distanceToStart / pixelsPerSecond;
+        }
+        
+        function toIndex(index, vars) {
+            vars = vars || {};
+            (Math.abs(index - curIndex) > length / 2) && (index += index > curIndex ? -length : length); // always go in the shortest direction
+            let newIndex = gsap.utils.wrap(0, length, index),
+                time = times[newIndex];
+            if (time > tl.time() !== index > curIndex) { // if we're wrapping the timeline's playhead, make the proper adjustments
+                vars.modifiers = {time: gsap.utils.wrap(0, tl.duration())};
+                time += tl.duration() * (index > curIndex ? 1 : -1);
+            }
+            curIndex = newIndex;
+            vars.overwrite = true;
+            return tl.tweenTo(time, vars);
+        }
+        
+        tl.next = vars => toIndex(curIndex + 1, vars);
+        tl.previous = vars => toIndex(curIndex - 1, vars);
+        tl.current = () => curIndex;
+        tl.toIndex = (index, vars) => toIndex(index, vars);
+        tl.times = times;
+        tl.progress(1, true).progress(0, true); // pre-render for performance
+        if (config.reversed) {
+            tl.vars.onReverseComplete();
+            tl.reverse();
+        }
+        return tl;
+    }
+
+    // --- IMPLEMENTASI SIMPEL (Tanpa Helper Ribet) --- //
+    // Kita pakai cara yang lebih ringan tapi efeknya sama kerennya
+    
+    const rows = document.querySelectorAll('.marquee-track');
+    
+    rows.forEach((row, i) => {
+        const groups = row.querySelectorAll('.marquee-group');
+        
+        // Tentukan arah (Baris 1 ke Kiri, Baris 2 ke Kanan)
+        const isReversed = i % 2 !== 0; 
+        
+        // 1. Set animasi dasar (infinite loop)
+        const timeline = gsap.to(groups, {
+            xPercent: isReversed ? 100 : -100, // Kiri atau Kanan
+            repeat: -1,
+            duration: 20, // Kecepatan normal
+            ease: "none"
+        });
+
+        // 2. Tambahkan Scroll Velocity Effect
+        let proxy = { timeScale: 1 };
+        
+        ScrollTrigger.create({
+            trigger: ".tech-section",
+            start: "top bottom",
+            end: "bottom top",
+            onUpdate: (self) => {
+                // Saat scroll, kita percepat timeScale
+                // Math.abs(self.getVelocity()) mendapatkan kecepatan scroll
+                let scrollVelocity = Math.abs(self.getVelocity() / 300); 
+                
+                // Batasi kecepatan maksimum agar tidak pusing
+                let newTimeScale = 1 + scrollVelocity;
+                if(newTimeScale > 5) newTimeScale = 5;
+
+                gsap.to(proxy, {
+                    timeScale: newTimeScale,
+                    duration: 0.2,
+                    overwrite: true,
+                    onUpdate: () => {
+                        timeline.timeScale(proxy.timeScale);
+                    }
+                });
+                
+                // Kembalikan ke kecepatan normal (1) saat berhenti scroll
+                gsap.to(proxy, {
+                    timeScale: 1,
+                    duration: 0.5,
+                    delay: 0.1, // Tunggu sebentar sebelum melambat
+                    overwrite: false, // Jangan overwrite tween di atas
+                    onUpdate: () => {
+                        timeline.timeScale(proxy.timeScale);
+                    }
+                });
+            }
+        });
+        
+        // 3. Efek Hover (Pause saat mouse di atas marquee)
+        row.addEventListener('mouseenter', () => timeline.timeScale(0.2)); // Melambat
+        row.addEventListener('mouseleave', () => timeline.timeScale(1));   // Normal lagi
+    });
+    </script>
+    <script type="module" src="./main.js"></script>
+
+    <script src="components/Navbar.js"></script>
+
+</body>
+
+</html>
