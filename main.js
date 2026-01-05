@@ -50,7 +50,7 @@ const genangan = new VectorLayer({
   })
 });
 
-// Layer Riau zIndex rendah (10) agar di bawah ikon
+// Layer Riau dengan zIndex rendah (10) agar di bawah ikon
 const riau = new VectorLayer({
   background: '#1a2b39',
   source: new VectorSource({ format: new GeoJSON(), url: 'data/polygon_riau.json' }),
@@ -64,6 +64,28 @@ const riau = new VectorLayer({
     'stroke-color': 'rgba(255, 255, 255, 0.3)',
     'stroke-width': 1,
   },
+});
+
+// Layer Pekanbaru dengan zIndex berbeda (20) agar di atas Riau tapi di bawah ikon
+const pekanbaru = new VectorLayer({
+  source: new VectorSource({ 
+    format: new GeoJSON(), 
+    url: 'data/pekan.json' 
+  }),
+  zIndex: 20, // Di atas layer Riau (10) tapi di bawah ikon (100)
+  style: new Style({
+    fill: new Fill({
+      color: 'rgba(255, 153, 0, 0.3)' // Warna oranye yang berbeda dari Riau
+    }),
+    stroke: new Stroke({
+      color: '#ff6600', // Warna stroke yang berbeda
+      width: 2
+    })
+  }),
+  // Tambahkan properti untuk membedakan layer
+  properties: {
+    name: 'pekanbaru'
+  }
 });
 
 /* --- 3. POPUP & MAP SETUP --- */
@@ -84,7 +106,7 @@ const defaultZoom = 9;
 
 const map = new Map({
   target: 'map',
-  layers: [ baseLayer, riau, banjir, genangan ],
+  layers: [ baseLayer, riau, pekanbaru, banjir, genangan ], // Pastikan urutan layer benar
   overlays: [overlay],
   view: new View({
     center: defaultCenter,
@@ -151,6 +173,7 @@ const displayFeatureInfo = function (pixel) {
     if (feature) {
       const text = feature.get('KABUPATEN') || feature.get('Nama_Pemetaan') || 
                    feature.get('kecamatan') || feature.get('Kabupaten') || 
+                   feature.get('KECAMATAN') || // Tambahkan kemungkinan nama properti dari pekan.json
                    'Fitur Terdeteksi';
       info.innerHTML = text;
     } else {
@@ -211,6 +234,10 @@ map.on('singleclick', function (evt) {
   const props = feature.getProperties();
   let content = '';
 
+  // Cek apakah fitur berasal dari layer Pekanbaru
+  const isPekanbaruFeature = feature.get('layer') === 'pekanbaru' || 
+                            (props.NAMOBJ && props.WADMKC === 'PEKANBARU');
+
   if (props.Nama_Pemetaan) {
     // Banjir
     content = `
@@ -236,12 +263,23 @@ map.on('singleclick', function (evt) {
         <p class="mb-0 small text-white">long: ${props.long || '-'}</p>
         <p class="mb-0 small text-white">lat: ${props.lat || '-'}</p>
       </div>`;
-  } else {
-    // Wilayah (Polygon)
-    const nama = props.Kabupaten || props.KABUPATEN || props.DESA || 'Area Riau';
+  } else if (isPekanbaruFeature) {
+    // Pekanbaru - Popup khusus untuk layer Pekanbaru
     content = `
       <div class="popup-header info">
-        <h6 class="mb-0 fw-bold"><i class="ri-map-pin-line me-1"></i> Info Wilayah</h6>
+        <h6 class="mb-0 fw-bold"><i class="ri-map-pin-line me-1"></i> Wilayah Pekanbaru</h6>
+      </div>
+      <div class="p-2">
+        <p class="mb-0 fw-bold">${props.NAMOBJ}</p>
+        ${props.WADMKC ? `<p class="mb-0 small text-white">Kecamatan: ${props.WADMKC}</p>` : ''}
+        ${props.WADMKD ? `<p class="mb-0 small text-white">Kabupaten: ${props.WADMKD}</p>` : ''}
+      </div>`;
+  } else {
+    // Wilayah Riau (Polygon) - Popup khusus untuk layer Riau
+    const nama = props.KECAMATAN || props.KECAMATAN || props.DESA || 'Area Riau';
+    content = `
+      <div class="popup-header info">
+        <h6 class="mb-0 fw-bold"><i class="ri-map-pin-line me-1"></i> Info Wilayah Riau</h6>
       </div>
       <div class="p-2">
         <p class="mb-0 fw-bold">${nama}</p>
@@ -281,7 +319,7 @@ function searchLocation() {
     const features = source.getFeatures();
     for (let feat of features) {
       const props = feat.getProperties();
-      const text = (props.kecamatan || props.jalan || props.Nama_Pemetaan || props.Kabupaten || '').toLowerCase();
+      const text = (props.kecamatan || props.jalan || props.Nama_Pemetaan || props.Kabupaten || props.NAMOBJ || '').toLowerCase();
       
       if (text.includes(keyword)) {
         const geometry = feat.getGeometry();
@@ -303,8 +341,10 @@ function searchLocation() {
 
   if (!searchInLayer(genangan)) {
     if (!searchInLayer(banjir)) {
-       if(!searchInLayer(riau)) {
-         alert('Lokasi tidak ditemukan.');
+       if(!searchInLayer(pekanbaru)) { 
+         if(!searchInLayer(riau)) {
+           alert('Lokasi tidak ditemukan.');
+         }
        }
     }
   }
@@ -334,6 +374,23 @@ document.getElementById('btnLocate').addEventListener('click', () => {
   }
 });
 
-document.getElementById('polygon').addEventListener('change', function () { riau.setVisible(this.checked); });
+// Kontrol untuk layer Riau
+document.getElementById('polygon').addEventListener('change', function () { 
+  riau.setVisible(this.checked); 
+  // Jika Riau dinonaktifkan, pastikan Pekanbaru tetap terlihat
+  if (!this.checked && document.getElementById('pekanbaru').checked) {
+    pekanbaru.setVisible(true);
+  }
+});
+
+// Kontrol untuk layer Pekanbaru
+document.getElementById('pekanbaru').addEventListener('change', function () { 
+  pekanbaru.setVisible(this.checked); 
+  // Jika Pekanbaru dinonaktifkan, pastikan Riau tetap terlihat
+  if (!this.checked && document.getElementById('polygon').checked) {
+    riau.setVisible(true);
+  }
+});
+
 document.getElementById('point').addEventListener('change', function () { banjir.setVisible(this.checked); });
 document.getElementById('point2').addEventListener('change', function () { genangan.setVisible(this.checked); });
