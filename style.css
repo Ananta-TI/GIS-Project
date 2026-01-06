@@ -1078,6 +1078,9 @@ a:hover {
     padding: var(--spacing) 0;
     width: 100%;
     transition: var(--transition);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-brand {
