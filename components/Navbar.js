@@ -15,7 +15,7 @@ function renderNavbar() {
                 <ul class="navbar-nav gap-4">
                     <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="map.html">Peta Live</a></li>
-                    <li class="nav-item"><a class="nav-link" href="data.html">Data Historis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Data Historis</a></li>
                     <li class="nav-item"><a class="nav-link" href="report.html">Laporan</a></li>
                 </ul>
             </div>

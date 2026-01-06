@@ -266,25 +266,42 @@
                 </div>
             </div>
 
-            <div class="marquee-track track-right">
-                <div class="marquee-group">
-                    <div class="tech-card filled"><i class="ri-stack-line"></i> Interactive Map</div>
-                    <div class="tech-card filled"><i class="ri-sensor-line"></i> Real-time Data</div>
-                    <div class="tech-card filled"><i class="ri-smartphone-line"></i> Responsive</div>
-                    <div class="tech-card filled"><i class="ri-eye-line"></i> Visualization</div>
-                    <div class="tech-card filled"><i class="ri-cpu-line"></i> AI Analytics</div>
-                </div>
-                <div class="marquee-group">
-                    <div class="tech-card filled"><i class="ri-stack-line"></i> Interactive Map</div>
-                    <div class="tech-card filled"><i class="ri-sensor-line"></i> Real-time Data</div>
-                    <div class="tech-card filled"><i class="ri-smartphone-line"></i> Responsive</div>
-                    <div class="tech-card filled"><i class="ri-eye-line"></i> Visualization</div>
-                    <div class="tech-card filled"><i class="ri-cpu-line"></i> AI Analytics</div>
-                </div>
-            </div>
+           
 
         </div>
     </section>
+
+    <!-- Tambahkan Section Berita & Wawasan ini -->
+<section class="news-insights-section" style="position: relative; padding: 100px 0; overflow: hidden;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="badge mb-2">
+                <span class="pulse-dot" style="background: var(--primary);"></span>
+                Berita & Wawasan
+            </div>
+            <h2 class="gradient-text" style="font-weight: 700;">Informasi Terkini & Analisis Data.</h2>
+            <p class="text-muted">Dapatkan update terbaru seputar kejadian banjir, analisis data spasial, dan upaya mitigasi di Provinsi Riau.</p>
+        </div>
+
+        <!-- Container untuk kartu berita yang akan diisi oleh JavaScript -->
+        <div id="news-container" class="news-grid">
+            <!-- Loading state -->
+            <div class="loading-spinner text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Memuat data...</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn-magnetic">
+                <div class="tombol"><span>Lihat Semua Berita</span></div>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- Akhir Section Berita & Wawasan -->
 
     <footer style="padding: 60px 0 30px; background: rgba(0,0,0,0.3);">
         <div class="container">
@@ -321,6 +338,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script type="module" src="./news.js"></script>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
