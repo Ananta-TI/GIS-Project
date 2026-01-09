@@ -30,44 +30,42 @@ const baseLayer = new TileLayer({
 
 /* --- 2. LAYER DATA (DENGAN Z-INDEX) --- */
 const banjir = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url: '/data/banjir.json'
-  }),
+  source: new VectorSource({ format: new GeoJSON(), url: '/data/banjir.json' }),
   zIndex: 100,
   style: new Style({
-    image: new Icon({
+    image: new Icon(({
       anchor: [0.5, 1],
-      src: '/icon/downpour.png',
-      width: 32,
-      height: 32
-    })
+      src: './public/icon/downpour.png',
+      width: 32, height: 32
+    }))
   })
 });
 
 const genangan = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url: '/data/csvjson.json'
-  }),
+  source: new VectorSource({ format: new GeoJSON(), url: '/data/csvjson.json' }),
   zIndex: 100,
   style: new Style({
-    image: new Icon({
+    image: new Icon(({
       anchor: [0.5, 1],
       src: '/icon/banjir-icon.png',
-      width: 32,
-      height: 32
-    })
+      width: 32, height: 32
+    }))
   })
 });
 
 const riau = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url: '/data/polygon_riau.json'
-  }),
-  visible: false,
+  source: new VectorSource({ format: new GeoJSON(), url: '/data/polygon_riau.json' }),
+  visible: false, // Layer akan disembunyikan saat pertama kali dimuat
   zIndex: 10,
+  style: {
+    'fill-color': [
+      'interpolate', ['linear'], ['get', 'OBJECTID'],
+      1, 'rgba(255, 255, 51, 0.4)',
+      1283, 'rgba(51, 88, 255, 0.4)',
+    ],
+    'stroke-color': 'rgba(255, 255, 255, 0.3)',
+    'stroke-width': 1,
+  },
 });
 
 const pekanbaru = new VectorLayer({
@@ -76,8 +74,19 @@ const pekanbaru = new VectorLayer({
     url: '/data/pekan.json'
   }),
   zIndex: 20,
+  style: new Style({
+    fill: new Fill({
+      color: 'rgba(255, 153, 0, 0.3)'
+    }),
+    stroke: new Stroke({
+      color: '#ff6600',
+      width: 2
+    })
+  }),
+  properties: {
+    name: 'pekanbaru'
+  }
 });
-
 
 /* --- 3. POPUP & MAP SETUP --- */
 const container = document.getElementById('popup');
