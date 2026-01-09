@@ -9,7 +9,7 @@ export default defineConfig({
         index: resolve(__dirname, "index.html"),
         map: resolve(__dirname, "map.html"),
         dashboard: resolve(__dirname, "dashboard.html"),
-        news: resolve(__dirname, "news.html"),
+        // news: resolve(__dirname, "news.html"),
       },
     },
   },
