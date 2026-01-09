@@ -35,7 +35,7 @@ const banjir = new VectorLayer({
   style: new Style({
     image: new Icon(({
       anchor: [0.5, 1],
-      src: 'icon/downpour.png',
+      src: './public/icon/downpour.png',
       width: 32, height: 32
     }))
   })
@@ -47,7 +47,7 @@ const genangan = new VectorLayer({
   style: new Style({
     image: new Icon(({
       anchor: [0.5, 1],
-      src: 'icon/banjir-icon.png',
+      src: './public/icon/banjir-icon.png',
       width: 32, height: 32
     }))
   })
@@ -71,7 +71,7 @@ const riau = new VectorLayer({
 const pekanbaru = new VectorLayer({
   source: new VectorSource({
     format: new GeoJSON(),
-    url: 'data/pekan.json'
+    url: './public/data/pekan.json'
   }),
   zIndex: 20,
   style: new Style({
