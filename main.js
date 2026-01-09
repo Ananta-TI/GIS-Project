@@ -30,7 +30,7 @@ const baseLayer = new TileLayer({
 
 /* --- 2. LAYER DATA (DENGAN Z-INDEX) --- */
 const banjir = new VectorLayer({
-  source: new VectorSource({ format: new GeoJSON(), url: 'data/banjir.json' }),
+  source: new VectorSource({ format: new GeoJSON(), url: './public/data/banjir.json' }),
   zIndex: 100,
   style: new Style({
     image: new Icon(({
@@ -42,7 +42,7 @@ const banjir = new VectorLayer({
 });
 
 const genangan = new VectorLayer({
-  source: new VectorSource({ format: new GeoJSON(), url: 'data/csvjson.json' }),
+  source: new VectorSource({ format: new GeoJSON(), url: './public/data/csvjson.json' }),
   zIndex: 100,
   style: new Style({
     image: new Icon(({
@@ -54,7 +54,7 @@ const genangan = new VectorLayer({
 });
 
 const riau = new VectorLayer({
-  source: new VectorSource({ format: new GeoJSON(), url: 'data/polygon_riau.json' }),
+  source: new VectorSource({ format: new GeoJSON(), url: './public/data/polygon_riau.json' }),
   visible: false, // Layer akan disembunyikan saat pertama kali dimuat
   zIndex: 10,
   style: {

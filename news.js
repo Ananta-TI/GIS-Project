@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // Fetch data dari file JSON
-    const response = await fetch('data/news.json');
+    const response = await fetch('./public/data/news.json');
     if (!response.ok) {
       throw new Error('Gagal memuat data berita');
     }

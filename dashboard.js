@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         // --- 1. DATA LOADING ---
         const [banjirData, genanganData, riauData] = await Promise.all([
-            fetch('data/banjir.json').then(res => {
+            fetch('./public/data/banjir.json').then(res => {
                 if (!res.ok) throw new Error('Gagal memuat data banjir');
                 return res.json();
             }),
-            fetch('data/csvjson.json').then(res => {
+            fetch('./public/data/csvjson.json').then(res => {
                 if (!res.ok) throw new Error('Gagal memuat data genangan');
                 return res.json();
             }),
-            fetch('data/polygon_riau.json').then(res => {
+            fetch('./public/data/polygon_riau.json').then(res => {
                 if (!res.ok) throw new Error('Gagal memuat data Riau');
                 return res.json();
             })
