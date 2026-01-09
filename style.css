@@ -1555,6 +1555,7 @@ a:hover {
 /* =========================================
    12. BACKGROUND EFFECTS
    ========================================= */
+/* Animated Background */
 .bg-gradient {
     position: fixed;
     top: 0;
@@ -1563,44 +1564,84 @@ a:hover {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    background: #0f172a; /* Warna dasar gelap */
 }
 
 .gradient-orb {
     position: absolute;
-    border-radius: var(--radius-full);
+    border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.3;
-    pointer-events: none;
+    opacity: 0.4;
+    animation: float 10s infinite ease-in-out;
 }
 
 .orb-1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, var(--primary), transparent);
-    top: -100px;
-    left: -100px;
-    animation: float 20s infinite alternate ease-in-out;
+    width: 300px;
+    height: 300px;
+    background: #3b82f6;
+    top: -50px;
+    left: -50px;
 }
 
 .orb-2 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, var(--secondary), transparent);
+    background: #8b5cf6;
     bottom: -100px;
     right: -100px;
-    animation: float 25s infinite alternate-reverse ease-in-out;
+    animation-delay: 2s;
 }
 
 .orb-3 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, var(--accent), transparent);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 15s infinite alternate ease-in-out;
+    width: 200px;
+    height: 200px;
+    background: #06b6d4;
+    top: 40%;
+    left: 40%;
+    animation-delay: 4s;
 }
 
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+}
+
+/* Base Styles */
+body {
+    background-color: transparent; /* Agar gradient background terlihat */
+    color: #e2e8f0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Card Styles untuk Dark Theme */
+.card {
+    background-color: #1e293b; /* Warna card gelap */
+    border: 1px solid #334155;
+    color: white;
+}
+
+.text-gray-800 {
+    color: #f1f5f9 !important; /* Override text gray bootstrap */
+}
+
+/* Metric Card Icons */
+.icon-circle {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bg-primary { background-color: #4e73df !important; }
+.bg-success { background-color: #1cc88a !important; }
+.bg-info { background-color: #36b9cc !important; }
+.bg-warning { background-color: #f6c23e !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 /* =========================================
    13. UTILITY CLASSES
    ========================================= */

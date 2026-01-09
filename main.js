@@ -35,7 +35,7 @@ const banjir = new VectorLayer({
   style: new Style({
     image: new Icon(({
       anchor: [0.5, 1],
-      src: './public/icon/downpour.png',
+      src: '/icon/downpour.png',
       width: 32, height: 32
     }))
   })
