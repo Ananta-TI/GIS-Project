@@ -1704,3 +1704,7 @@ a:hover {
         border-radius: var(--radius);
     }
 }
+
+.form-control-plaintext{
+    color: var(--primary);
+}

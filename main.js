@@ -8,6 +8,10 @@ import GeoJSON from 'ol/format/GeoJSON.js';
 import { fromLonLat } from 'ol/proj';
 import { Icon, Style, Stroke, Fill } from 'ol/style.js';
 import Overlay from 'ol/Overlay.js';
+import "ol/ol.css";
+import "./components/Navbar.js";
+
+
 
 /* --- 1. SETUP BASEMAPS --- */
 const sourceOSM = new OSM();

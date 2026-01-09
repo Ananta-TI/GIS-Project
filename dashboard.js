@@ -1,3 +1,5 @@
+import "./components/Navbar.js";
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Tampilkan loading spinner
     showLoadingSpinner();

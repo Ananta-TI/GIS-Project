@@ -494,7 +494,7 @@
                 // Pie Chart: Klasifikasi Area
                 const classificationCount = {};
                 riauData.features.forEach(feature => {
-                    const classification = feature.properties.KLASIFIKAS;
+                    const classification = feature.properties.STATUS_KOT;
                     classificationCount[classification] = (classificationCount[classification] || 0) + 1;
                 });
 
@@ -1315,6 +1315,6 @@
     </script>
     
     <!-- Navbar Component -->
-    <script src="components/Navbar.js"></script>
+<script type="module" src="/components/Navbar.js"></script>
 </body>
 </html>
