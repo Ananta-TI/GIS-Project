@@ -1,314 +1,199 @@
 /* =========================================
-   DASHBOARD.CSS - FloodGuard AI (Versi Ditingkatkan)
-   Menggunakan tema dan gaya dari style.css untuk konsistensi.
+   DASHBOARD SPECIFIC STYLES
    ========================================= */
 
-/* --- 1. IMPORT VARIABEL & GAYA DASAR --- */
-/* Kami akan menyalin variabel dan gaya dasar dari style.css untuk konsistensi */
-@import "node_modules/ol/ol.css";
-
-:root {
-    --bg-dark: #020617;
-    --bg-card: #0f172a;
-    --primary: #38bdf8;
-    --secondary: #818cf8;
-    --accent: #f43f5e;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: rgba(255, 255, 255, 0.08);
-    --success: #10b981;
-    --info: #0ea5e9;
-    --warning: #f59e0b;
+/* --- Layout & Background --- */
+.bg-gradient-fixed {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    background: var(--bg-dark, #020617);
+    overflow: hidden;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    width: 100%;
-}
-
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    color: var(--text-main);
-}
-
-/* --- 2. LAYOUT UTAMA & NAVBAR --- */
 .main-content {
-    padding: 1.5rem;
-    animation: fadeIn 1s ease-out; /* Animasi masuk halus untuk seluruh konten */
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+/* --- Loading Overlay --- */
+.loading-overlay {
+    position: fixed; inset: 0; background: rgba(2, 6, 23, 0.95);
+    z-index: 9999; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; color: var(--primary, #38bdf8);
+}
+
+/* --- Metric Cards (Kotak Angka) --- */
+.metric-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.metric-body {
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.metric-label {
+    font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2.2rem; font-weight: 800; margin: 0; color: #fff;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.metric-icon {
+    width: 60px; height: 60px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* Border Accents */
+.border-left-danger { border-left: 4px solid #ef4444; }
+.border-left-info { border-left: 4px solid #0ea5e9; }
+.border-left-warning { border-left: 4px solid #f59e0b; }
+.border-left-success { border-left: 4px solid #10b981; }
+
+.bg-danger-subtle { background: rgba(239, 68, 68, 0.15); }
+.bg-info-subtle { background: rgba(14, 165, 233, 0.15); }
+.bg-warning-subtle { background: rgba(245, 158, 11, 0.15); }
+.bg-success-subtle { background: rgba(16, 185, 129, 0.15); }
+
+/* --- Glass Cards (Container Umum) --- */
+.glass-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-custom {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.card-body-custom {
+    padding: 1.5rem;
+}
+
+/* --- Charts Responsive --- */
+.chart-container-responsive {
+    position: relative; height: 350px; width: 100%;
+}
+
+.chart-container-pie {
+    position: relative; height: 300px; width: 100%; display: flex; justify-content: center;
+}
+
+/* --- News Feed --- */
+.news-scroll-area {
+    max-height: 400px; overflow-y: auto; padding: 1rem;
+}
+
+.news-item {
+    padding: 1rem; border-radius: 12px; background: rgba(0,0,0,0.2);
+    margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+}
+.news-item:hover { background: rgba(255,255,255,0.05); }
+
+/* --- Mini Map --- */
+.mini-map-container {
+    height: 350px; width: 100%; background: #1a1a1a;
+}
+
+.map-legend-overlay {
+    position: absolute; bottom: 15px; left: 15px;
+    background: rgba(0,0,0,0.7); padding: 8px 12px; border-radius: 8px;
+    backdrop-filter: blur(4px); pointer-events: none;
+}
+.legend-item { font-size: 0.8rem; color: #eee; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+/* --- Table --- */
+.table-hover tbody tr:hover {
+    background-color: rgba(56, 189, 248, 0.1) !important;
+}
+.table th {
+    font-size: 0.8rem; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-muted, #94a3b8);
+}
+.search-box {
+    position: relative; width: 250px;
+}
+.search-box input {
+    padding-left: 2.5rem;
+}
+.search-icon {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--text-muted); pointer-events: none;
+}
+
+/* --- Utilities & Buttons --- */
+.btn-glass {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); color: white;
+}
+.btn-glass:hover { background: rgba(255,255,255,0.2); color: white; }
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards; opacity: 0; transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Navbar Styling (menggunakan gaya dari landing page) */
-.navbar {
-    background: rgba(2, 6, 23, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
-}
-
-.navbar-brand {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    color: var(--text-main) !important;
-    font-size: 1.2rem;
-}
-
-.nav-link {
-    color: var(--text-muted) !important;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.nav-link:hover, .nav-link.active { 
-    color: var(--primary) !important; 
-}
-
-/* --- 3. METRIC CARDS (Dengan Glassmorphism & Animasi) --- */
-.card {
-    border: none;
-    border-radius: 1rem;
-    background: rgba(15, 23, 42, 0.85); /* Efek glassmorphism */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out;
-    overflow: hidden;
-    position: relative;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    border-color: rgba(56, 189, 248, 0.3);
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.card:hover::before {
-    opacity: 1;
-}
-
-/* Border Kiri Berwarna (Lebih halus) */
-.border-left-primary { border-left: 3px solid var(--primary) !important; }
-.border-left-success { border-left: 3px solid var(--success) !important; }
-.border-left-info { border-left: 3px solid var(--info) !important; }
-.border-left-warning { border-left: 3px solid var(--warning) !important; }
-
-.card-body {
-    position: relative;
-    z-index: 1;
-}
-
-.card-body .text-xs {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    color: var(--text-muted);
-}
-
-.card-body .h5 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.card-body .fa-2x {
-    font-size: 2.5rem;
-    color: var(--text-muted);
-    transition: color 0.3s;
-}
-
-.card:hover .fa-2x {
-    color: var(--primary);
-}
-
-/* --- 4. GRAFIK (CHARTS) --- */
-.chart-area, .chart-pie {
-    position: relative;
-}
-
-.chart-area {
-    height: 20rem;
-    width: 100%;
-}
-
-.chart-pie {
-    height: 15rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-header {
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 1.5rem;
-}
-
-.card-header h6 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-/* --- 5. TABEL DATA --- */
-.table {
-    color: var(--text-main);
-    background-color: transparent;
-}
-
-#dataTable thead th {
-    border-bottom: 2px solid var(--border);
-    font-weight: 600;
-    color: var(--text-main);
-    background-color: rgba(15, 23, 42, 0.5);
-    vertical-align: middle;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-}
-
-#dataTable tbody tr {
-    transition: all 0.2s ease-in-out;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-#dataTable tbody tr:hover {
-    background-color: rgba(56, 189, 248, 0.1);
-    transform: scale(1.01);
-}
-
-#dataTable td {
-    vertical-align: middle;
-    padding: 0.75rem;
-    border-bottom: none;
-}
-
-/* Styling untuk input pencarian */
-#tableSearch {
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid var(--border);
-    color: var(--text-main);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
-    transition: all 0.3s;
-}
-
-#tableSearch:focus {
-    background: rgba(15, 23, 42, 0.9);
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25);
-    outline: none;
-}
-
-#tableSearch::placeholder {
-    color: var(--text-muted);
-}
-
-/* --- 6. MINI MAP --- */
-#miniMap {
-    border-radius: 0 0 0.75rem 0.75rem;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* --- 7. BUTTON GROUP & BUTTON --- */
-.btn-group .btn {
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-group .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    transition: left 0.5s;
-}
-
-.btn-group .btn:hover::before {
-    left: 100%;
-}
-
-.btn-group .btn:hover {
-    color: #fff;
-    border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
-}
-
-.btn-group .btn i {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- 8. RESPONSIVE DESIGN --- */
+/* --- RESPONSIVE ADJUSTMENTS --- */
 @media (max-width: 768px) {
-    .main-content {
-        padding: 1rem;
-    }
-
-    .card-body .h5 {
-        font-size: 1.5rem;
-    }
-
-    .chart-area {
-        height: 15rem;
-    }
+    .main-content { padding-top: 80px; } /* Space for navbar */
+    .metric-value { font-size: 1.8rem; }
+    .chart-container-responsive { height: 250px; }
+    .search-box { width: 100%; margin-top: 10px; }
+    .table thead { display: none; } /* Hide headers on mobile */
     
-    .chart-pie {
-        height: 12rem;
+    /* Mobile Card-like Table Row */
+    #dataTable tbody tr {
+        display: block; margin-bottom: 1rem;
+        background: rgba(255,255,255,0.03); border-radius: 12px;
+        padding: 1rem; border: 1px solid rgba(255,255,255,0.05);
     }
-
-    .d-sm-flex {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+    #dataTable td {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.5rem 0; border: none;
     }
-
-    .btn-group {
-        width: 100%;
+    #dataTable td::before {
+        content: attr(data-label); font-weight: 600; color: var(--text-muted); font-size: 0.85rem;
     }
+    #dataTable td:last-child { margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed rgba(255,255,255,0.1); }
 }
+
+/* Update agar tabel lebih responsive dengan badge baru */
+.badge.animate-pulse {
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Scroll area untuk news yang baru */
+.news-item {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px; /* Siku sedikit rounded */
+}
+

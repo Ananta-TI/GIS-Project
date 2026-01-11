@@ -16,7 +16,7 @@ function renderNavbar() {
                     <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="map.html">Peta Live</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Data Historis</a></li>
-                    <li class="nav-item"><a class="nav-link" href="report.html">Laporan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="laporan.html">Laporan</a></li>
                 </ul>
             </div>
             <div class="d-none d-lg-block">

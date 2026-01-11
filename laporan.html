@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Data Report | FloodGuard AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css  ">
+</head>
+<body>
+
+    <div id="navbar-root" class="no-print"></div>
+
+    <div class="bg-gradient-fixed no-print"></div>
+
+    <div class="container main-container">
+        
+        <div class="d-flex justify-content-between align-items-end mb-5 fade-up">
+            <div>
+                <a href="index.html" class="btn btn-outline btn-sm mb-4 no-print">
+                    <!-- <i class="ri-arrow-left-line"></i> Dashboard -->
+                </a>
+                <h1 class="display-5 fw-bold mb-2">
+                    <span class="text-gradient" style="background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Laporan Data</span> & Dokumentasi
+                </h1>
+                <p class="text-muted lead mb-0" style="max-width: 600px;">
+                    Dokumentasi teknis dataset, struktur skema, dan analisis ringkas untuk keperluan audit dan pengembangan sistem FloodGuard AI.
+                </p>
+            </div>
+            <div class="text-end d-none d-md-block">
+                <button onclick="window.print()" class="btn btn-action btn-outline no-print">
+                    <i class="ri-printer-line"></i> Cetak Laporan
+                </button>
+                <div class="mt-3">
+                    <small class="text-muted d-block text-uppercase" style="font-size: 0.7rem; letter-spacing: 1px;">Generated On</small>
+                    <span class="fw-bold font-monospace" id="currentDate">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card fade-up" style="animation-delay: 0.1s;">
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+                <h4 class="fw-bold m-0"><i class="ri-bar-chart-grouped-line me-2 text-primary"></i>Ringkasan Eksekutif</h4>
+                <span class="badge bg-primary bg-opacity-10 text-white border border-primary border-opacity-25">Live Data</span>
+            </div>
+            
+            <div class="alert alert-info bg-opacity-10 border-0 text-info d-flex align-items-start gap-3 mb-4">
+                <i class="ri-sparkling-fill mt-1"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Analisis Otomatis AI</h6>
+                    <p class="mb-0 small opacity-75" id="autoInsight">Sedang memuat analisis data...</p>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-lg-3 col-6">
+                    <div class="metric-box danger">
+                        <h2 class="fw-bold mb-0 display-6" id="countBanjir">0</h2>
+                        <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Titik Banjir</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="metric-box info">
+                        <h2 class="fw-bold mb-0 display-6" id="countGenangan">0</h2>
+                        <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Titik Genangan</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="metric-box warning">
+                        <h2 class="fw-bold mb-0 display-6" id="countKorban">0</h2>
+                        <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Jiwa Terdampak</small>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="metric-box success">
+                        <h2 class="fw-bold mb-0 display-6" id="countWilayah">0</h2>
+                        <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Area Terpetakan</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-muted text-uppercase fw-bold mb-4 mt-5 ps-2 border-start border-4 border-primary">Dokumentasi Dataset</h5>
+
+        <div class="row g-4">
+            
+            <div class="col-lg-12 fade-up" style="animation-delay: 0.2s;">
+                <div class="glass-card">
+                    <div class="row">
+                        <div class="col-lg-5 mb-4 mb-lg-0">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <span class="badge bg-danger rounded-pill">GeoJSON</span>
+                                <small class="text-muted font-monospace">/data/banjir.json</small>
+                            </div>
+                            <h3 class="fw-bold mb-2">Dataset Titik Banjir</h3>
+                            <p class="text-muted mb-4">
+                                Data spasial titik koordinat lokasi banjir parah yang memiliki dampak signifikan (korban jiwa, kerusakan, evakuasi). Data ini digunakan untuk heatmap dan analisis resiko tinggi.
+                            </p>
+                            
+                            <h6 class="fw-bold text-white mb-3">Kamus Data (Attributes):</h6>
+                            <table class="table-custom">
+                                <thead>
+                                    <tr><th>Atribut</th><th>Tipe</th><th>Deskripsi</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-monospace text-primary">Nama_Pemetaan</td>
+                                        <td><span class="type-badge">String</span></td>
+                                        <td>Nama lokasi atau area kejadian spesifik.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-primary">Jumlah_Korban</td>
+                                        <td><span class="type-badge">Integer</span></td>
+                                        <td>Estimasi jumlah jiwa yang terdampak langsung.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-primary">kecamatan</td>
+                                        <td><span class="type-badge">String</span></td>
+                                        <td>Nama kecamatan administratif lokasi.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-primary">geometry</td>
+                                        <td><span class="type-badge">Point</span></td>
+                                        <td>Koordinat [Longitude, Latitude] sistem EPSG:4326.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="/data/banjir.json" download class="btn btn-action btn-outline mt-4 no-print">
+                                <i class="ri-download-line"></i> Unduh JSON
+                            </a>
+                        </div>
+
+                        <div class="col-lg-7">
+                            <div class="code-window h-100">
+                                <div class="window-header">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                    <span class="ms-2 text-muted small font-monospace">preview.json</span>
+                                </div>
+<pre><code>{
+  <span class="k">"type"</span>: <span class="s">"Feature"</span>,
+  <span class="k">"id"</span>: <span class="n">46</span>,
+  <span class="k">"geometry"</span>: {
+    <span class="k">"type"</span>: <span class="s">"Point"</span>,
+    <span class="k">"coordinates"</span>: [
+      <span class="n">102.238136</span>,
+      <span class="n">0.276970</span>
+    ]
+  },
+  <span class="k">"properties"</span>: {
+    <span class="k">"OBJECTID"</span>: <span class="n">46</span>,
+    <span class="k">"Nama_Pemetaan"</span>: <span class="s">"Rangsang"</span>,
+    <span class="k">"Kecamatan"</span>: <span class="s">"Rangsang Barat"</span>,
+    <span class="k">"Jumlah_Korban"</span>: <span class="n">200</span>,
+    <span class="k">"Status"</span>: <span class="s">"Siaga 1"</span>
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 fade-up" style="animation-delay: 0.3s;">
+                <div class="glass-card">
+                    <div class="row">
+                        <div class="col-lg-5 mb-4 mb-lg-0 order-lg-2">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <span class="badge bg-info rounded-pill">GeoJSON</span>
+                                <small class="text-muted font-monospace">/data/csvjson.json</small>
+                            </div>
+                            <h3 class="fw-bold mb-2">Dataset Titik Genangan</h3>
+                            <p class="text-muted mb-4">
+                                Data lokasi genangan air sementara (run-off) yang sering terjadi saat hujan lebat. Dampak relatif lebih rendah dibanding banjir, biasanya menyebabkan kemacetan.
+                            </p>
+                            
+                            <h6 class="fw-bold text-white mb-3">Kamus Data (Attributes):</h6>
+                            <table class="table-custom">
+                                <thead>
+                                    <tr><th>Atribut</th><th>Tipe</th><th>Deskripsi</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-monospace text-primary">jalan</td>
+                                        <td><span class="type-badge">String</span></td>
+                                        <td>Nama ruas jalan tempat genangan terjadi.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-primary">kecamatan</td>
+                                        <td><span class="type-badge">String</span></td>
+                                        <td>Lokasi administratif kecamatan.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-monospace text-primary">lat / long</td>
+                                        <td><span class="type-badge">Float</span></td>
+                                        <td>Atribut koordinat eksplisit (selain geometry).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a href="/data/csvjson.json" download class="btn btn-action btn-outline mt-4 no-print">
+                                <i class="ri-download-line"></i> Unduh JSON
+                            </a>
+                        </div>
+
+                        <div class="col-lg-7 order-lg-1">
+                            <div class="code-window h-100">
+                                <div class="window-header">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                    <span class="ms-2 text-muted small font-monospace">preview.json</span>
+                                </div>
+<pre><code>{
+  <span class="k">"type"</span>: <span class="s">"Feature"</span>,
+  <span class="k">"id"</span>: <span class="n">2</span>,
+  <span class="k">"geometry"</span>: {
+    <span class="k">"type"</span>: <span class="s">"Point"</span>,
+    <span class="k">"coordinates"</span>: [<span class="n">101.413</span>, <span class="n">0.516</span>]
+  },
+  <span class="k">"properties"</span>: {
+    <span class="k">"kecamatan"</span>: <span class="s">"Payung Sekaki"</span>,
+    <span class="k">"jalan"</span>: <span class="s">"Jl. Sepakat, Labuh Baru..."</span>,
+    <span class="k">"lat"</span>: <span class="n">0.516703</span>,
+    <span class="k">"long"</span>: <span class="n">101.413399</span>
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 fade-up" style="animation-delay: 0.4s;">
+                <div class="glass-card">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge bg-warning text-dark rounded-pill">Polygon</span>
+                        <small class="text-muted font-monospace">/data/polygon_riau.json</small>
+                    </div>
+                    <h3 class="fw-bold mb-3">Dataset Area & Batas Wilayah</h3>
+                    <p class="text-muted mb-4">
+                        Data vektor poligon yang mendefinisikan batas administrasi Kabupaten/Kota dan Kecamatan. Dataset ini juga memuat atribut sosial-ekonomi dan status kerawanan wilayah.
+                    </p>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="code-window">
+                                <div class="window-header text-muted small">Atribut Riau (Sampel)</div>
+<pre><code><span class="k">"properties"</span>: {
+  <span class="k">"KECAMATAN"</span>: <span class="s">"Bukit Kapur"</span>,
+  <span class="k">"KABUPATEN"</span>: <span class="s">"Bengkalis"</span>,
+  <span class="k">"STATUS_KOT"</span>: <span class="s">"Desa"</span>,
+  <span class="k">"KEMATIAN"</span>: <span class="n">10</span>,
+  <span class="k">"KLASIFIKAS"</span>: <span class="s">"Swasembada"</span>,
+  <span class="k">"Shape_Area"</span>: <span class="n">0.007204</span>
+}</code></pre>
+
+                            </div>
+                             <a href="/data/polygon_riau.json" download class="btn btn-action btn-outline mt-4 no-print">
+                                <i class="ri-download-line"></i> Unduh JSON
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mt-3 mt-lg-0">
+                            <div class="code-window">
+                                <div class="window-header text-muted small">Atribut Pekanbaru (Sampel)</div>
+<pre><code><span class="k">"properties"</span>: {
+  <span class="k">"Nama_Kec"</span>: <span class="s">"Payung Sekaki"</span>,
+  <span class="k">"Nama_Kab"</span>: <span class="s">"Kota Pekanbaru"</span>,
+  <span class="k">"Nama_Prov"</span>: <span class="s">"Riau"</span>,
+  <span class="k">"Luas_Ha"</span>: <span class="n">4500.21</span>
+}</code></pre>
+
+                            </div>
+                             <a href="/data/pekan.json" download class="btn btn-action btn-outline mt-4 no-print">
+                                <i class="ri-download-line"></i> Unduh JSON
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-5 mb-5 pb-5 text-muted small no-print">
+            <p class="mb-1">&copy; 2026 FloodGuard AI Analytics. All Rights Reserved.</p>
+            <p>Generated by System v2.4.0</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Tanggal otomatis
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('id-ID', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+
+        async function fetchReportData() {
+            try {
+                // Fetch data (Ganti URL dengan path file JSON asli Anda)
+                // Menggunakan Promise.allSettle agar jika satu gagal, yang lain tetap jalan (opsional)
+                // Di sini pakai Promise.all standar
+                const [banjirRes, genanganRes, riauRes] = await Promise.all([
+                    fetch('data/banjir.json').then(r => r.ok ? r.json() : { features: [] }),
+                    fetch('data/csvjson.json').then(r => r.ok ? r.json() : { features: [] }),
+                    fetch('data/polygon_riau.json').then(r => r.ok ? r.json() : { features: [] })
+                ]);
+
+                // Kalkulasi Statistik
+                const countBanjir = banjirRes.features ? banjirRes.features.length : 0;
+                const countGenangan = genanganRes.features ? genanganRes.features.length : 0;
+                const countWilayah = riauRes.features ? riauRes.features.length : 0;
+                
+                // Kalkulasi Total Korban (Safety check untuk properti)
+                const countKorban = (banjirRes.features || []).reduce((sum, f) => {
+                    const val = f.properties && f.properties.Jumlah_Korban ? parseInt(f.properties.Jumlah_Korban) : 0;
+                    return sum + (isNaN(val) ? 0 : val);
+                }, 0);
+
+                // Update Angka dengan Animasi
+                animateValue("countBanjir", 0, countBanjir, 1000);
+                animateValue("countGenangan", 0, countGenangan, 1000);
+                animateValue("countKorban", 0, countKorban, 1500);
+                animateValue("countWilayah", 0, countWilayah, 1000);
+
+                // Generate Insight Otomatis
+                generateInsight(countBanjir, countGenangan, countKorban);
+
+            } catch (error) {
+                console.error("Gagal memuat data laporan:", error);
+                document.getElementById('autoInsight').innerText = "Gagal terhubung ke database lokal. Pastikan file JSON tersedia.";
+                document.getElementById('autoInsight').className = "text-danger fw-bold";
+            }
+        }
+
+        function generateInsight(banjir, genangan, korban) {
+            let status = "AMAN";
+            let desc = "";
+
+            if (korban > 100 || banjir > 50) {
+                status = "BAHAYA (SIAGA 1)";
+                desc = `Terdeteksi tingkat kejadian banjir yang tinggi dengan total ${korban} jiwa terdampak. Diperlukan tindakan mitigasi prioritas di ${banjir} titik lokasi.`;
+            } else if (korban > 20 || banjir > 10) {
+                status = "WASPADA (SIAGA 2)";
+                desc = `Kondisi waspada dengan ${banjir} titik banjir dan ${genangan} titik genangan. Pemantauan intensif diperlukan.`;
+            } else {
+                status = "NORMAL";
+                desc = "Kondisi wilayah relatif kondusif. Titik genangan minimal dan dampak korban jiwa rendah.";
+            }
+
+            const insightEl = document.getElementById('autoInsight');
+            insightEl.innerHTML = `<strong>Status: ${status}.</strong> <br> ${desc}`;
+        }
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        fetchReportData();
+    </script>
+
+    <script type="module" src="/components/Navbar.js"></script>
+
+</body>
+</html>

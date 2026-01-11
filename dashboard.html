@@ -2,354 +2,200 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Dashboard Analisis Banjir | FloodGuard AI</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.3.0/ol.css">
     
-    <style>
-        /* Additional styles for map and other components */
-        .ol-popup {
-            position: absolute;
-            background-color: white;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #cccccc;
-            bottom: 12px;
-            left: -50px;
-            min-width: 200px;
-            z-index: 1000; /* Ensure popup is above map */
-        }
-        .ol-popup:after, .ol-popup:before {
-            top: 100%;
-            border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            position: absolute;
-            pointer-events: none;
-        }
-        .ol-popup:after {
-            border-top-color: white;
-            border-width: 10px;
-            left: 48px;
-            margin-left: -10px;
-        }
-        .ol-popup:before {
-            border-top-color: #cccccc;
-            border-width: 11px;
-            left: 48px;
-            margin-left: -11px;
-        }
-        .ol-popup-closer {
-            text-decoration: none;
-            position: absolute;
-            top: 2px;
-            right: 8px;
-            color: #333;
-        }
-        .ol-popup-closer:after {
-            content: "✖";
-        }
-        
-        /* Dark theme adjustments */
-        .bg-dark .table-hover tbody tr:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .dropdown-menu {
-            background-color: #2d3748;
-            border-color: #4a5568;
-        }
-        
-        .dropdown-item {
-            color: #e2e8f0;
-        }
-        
-        .dropdown-item:hover {
-            background-color: #4a5568;
-            color: #fff;
-        }
-        
-        .pagination .page-link {
-            background-color: #2d3748;
-            border-color: #4a5568;
-            color: #e2e8f0;
-        }
-        
-        .pagination .page-link:hover {
-            background-color: #4a5568;
-            color: #fff;
-        }
-        
-        .pagination .page-item.active .page-link {
-            background-color: #3182ce;
-            border-color: #3182ce;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css"> </head>
+    <div id="navbar-root"></div>
 <body>
 
-    <div id="navbar-root"></div>
     
-    <div class="bg-gradient">
+
+    
+    <div class="bg-gradient-fixed">
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
     </div>
     
     <main class="main-content">
-        <div class="container-fluid">
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">
-                    <i class="ri-dashboard-3-line me-2"></i>Dashboard Analisis Banjir Provinsi Riau
-                </h1>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-sm btn-outline-light" id="exportBtn">
-                        <i class="ri-download-2-line me-1"></i> Export Data
+        <div class="container-fluid px-4 pt-4">
+            
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5 fade-in-up">
+                <div class="mb-3 mb-md-0">
+                    <h1 class="h3 fw-bold text-white mb-1">
+                        <i class="ri-dashboard-3-fill text-primary me-2"></i>Dashboard Analisis
+                    </h1>
+                    <p class="text-muted small mb-0">Pantau persebaran banjir dan genangan di Riau secara Real-time.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-primary btn-sm" id="exportBtn">
+                        <i class="ri-download-cloud-2-line me-1"></i> Export
                     </button>
-                    <button type="button" class="btn btn-sm btn-outline-light" id="refreshBtn">
+                    <button type="button" class="btn btn-primary btn-sm" id="refreshBtn">
                         <i class="ri-refresh-line me-1"></i> Refresh
                     </button>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2 metric-card">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        <i class="ri-alert-fill me-1"></i>Total Titik Banjir
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalFloodPoints">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="ri-alert-fill text-white"></i>
-                                    </div>
-                                </div>
+            <div class="row g-4 mb-5 fade-in-up" style="animation-delay: 0.1s;">
+                <div class="col-xl-3 col-md-6">
+                    <div class="metric-card border-left-danger">
+                        <div class="metric-body">
+                            <div>
+                                <p class="metric-label text-danger">Titik Banjir</p>
+                                <h2 class="metric-value" id="totalFloodPoints">0</h2>
+                            </div>
+                            <div class="metric-icon bg-danger-subtle text-danger">
+                                <i class="ri-alarm-warning-fill"></i>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2 metric-card">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        <i class="ri-rainy-fill me-1"></i>Total Titik Genangan
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalWaterloggingPoints">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon-circle bg-success">
-                                        <i class="ri-rainy-fill text-white"></i>
-                                    </div>
-                                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="metric-card border-left-info">
+                        <div class="metric-body">
+                            <div>
+                                <p class="metric-label text-info">Titik Genangan</p>
+                                <h2 class="metric-value" id="totalWaterloggingPoints">0</h2>
+                            </div>
+                            <div class="metric-icon bg-info-subtle text-info">
+                                <i class="ri-drop-fill"></i>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2 metric-card">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                        <i class="ri-user-3-fill me-1"></i>Total Korban Jiwa
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalVictims">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon-circle bg-info">
-                                        <i class="ri-user-3-fill text-white"></i>
-                                    </div>
-                                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="metric-card border-left-warning">
+                        <div class="metric-body">
+                            <div>
+                                <p class="metric-label text-warning">Terdampak (Jiwa)</p>
+                                <h2 class="metric-value" id="totalVictims">0</h2>
+                            </div>
+                            <div class="metric-icon bg-warning-subtle text-warning">
+                                <i class="ri-group-fill"></i>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2 metric-card">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        <i class="ri-map-pin-2-fill me-1"></i>Kecamatan Terdampak
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="affectedDistricts">0</div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="ri-map-pin-2-fill text-white"></i>
-                                    </div>
-                                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="metric-card border-left-success">
+                        <div class="metric-body">
+                            <div>
+                                <p class="metric-label text-success">Kecamatan</p>
+                                <h2 class="metric-value" id="affectedDistricts">0</h2>
+                            </div>
+                            <div class="metric-icon bg-success-subtle text-success">
+                                <i class="ri-map-pin-range-fill"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                <i class="ri-newspaper-line me-1"></i>Berita Terkini Banjir
-                            </h6>
-                            <button type="button" class="btn btn-sm btn-outline-primary" id="refreshNewsBtn">
-                                <i class="ri-refresh-line"></i>
-                            </button>
+            <div class="row g-4 mb-5 fade-in-up" style="animation-delay: 0.2s;">
+                <div class="col-lg-8">
+                    <div class="glass-card h-100">
+                        <div class="card-header-custom">
+                            <h6 class="fw-bold m-0"><i class="ri-bar-chart-grouped-fill me-2 text-primary"></i>Statistik Korban per Lokasi</h6>
                         </div>
-                        <div class="card-body">
-                            <div class="row" id="newsContainer">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-8 col-lg-7">
-                    <div class="card shadow mb-4 chart-card">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                <i class="ri-bar-chart-2-line me-1"></i>Jumlah Korban per Lokasi Banjir
-                            </h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle" href="#" role="button" id="victimsChartDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="ri-more-2-fill text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
-                                    <a class="dropdown-item" href="#" id="exportVictimsChart">Export Data</a>
-                                    <a class="dropdown-item" href="#" id="viewVictimsChart">Lihat Detail</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" id="refreshVictimsChart">Refresh</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-area">
+                        <div class="card-body-custom">
+                            <div class="chart-container-responsive">
                                 <canvas id="victimsChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-4 col-lg-5">
-                    <div class="card shadow mb-4 chart-card">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                <i class="ri-pie-chart-2-line me-1"></i>Klasifikasi Area di Riau
-                            </h6>
+                <div class="col-lg-4">
+                    <div class="glass-card h-100">
+                        <div class="card-header-custom d-flex justify-content-between align-items-center">
+                            <h6 class="fw-bold m-0"><i class="ri-newspaper-line me-2 text-info"></i>Update Terkini</h6>
+                            <span class="badge bg-dark border border-secondary">Live</span>
                         </div>
-                        <div class="card-body">
-                            <div class="chart-pie pt-4 pb-2">
+                        <div class="card-body-custom p-0">
+                            <div id="newsContainer" class="news-scroll-area">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5 fade-in-up" style="animation-delay: 0.3s;">
+                <div class="col-lg-4 order-lg-2">
+                    <div class="glass-card h-100">
+                        <div class="card-header-custom">
+                            <h6 class="fw-bold m-0"><i class="ri-pie-chart-2-fill me-2 text-warning"></i>Klasifikasi Resiko</h6>
+                        </div>
+                        <div class="card-body-custom d-flex flex-column align-items-center justify-content-center">
+                            <div class="chart-container-pie">
                                 <canvas id="classificationChart"></canvas>
                             </div>
-                            <div class="mt-4 text-center small">
-                                <span class="mr-2">
-                                    <i class="ri-checkbox-blank-circle-fill text-primary"></i> Resiko Tinggi
-                                </span>
-                                <span class="mr-2">
-                                    <i class="ri-checkbox-blank-circle-fill text-success"></i> Resiko Sedang
-                                </span>
-                                <span class="mr-2">
-                                    <i class="ri-checkbox-blank-circle-fill text-info"></i> Resiko Rendah
-                                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 order-lg-1">
+                    <div class="glass-card h-100">
+                        <div class="card-header-custom">
+                            <h6 class="fw-bold m-0"><i class="ri-map-2-fill me-2 text-success"></i>Peta Persebaran Mini</h6>
+                        </div>
+                        <div class="card-body-custom p-0 position-relative">
+                            <div id="miniMap" class="mini-map-container"></div>
+                            <div class="map-legend-overlay">
+                                <div class="legend-item"><span class="dot bg-danger"></span>Banjir</div>
+                                <div class="legend-item"><span class="dot bg-info"></span>Genangan</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-8 mb-4">
-                    <div class="card shadow mb-4 table-card">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                <i class="ri-table-line me-1"></i>Data Detail Titik Banjir & Genangan
-                            </h6>
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-outline-primary" id="filterBtn">
-                                    <i class="ri-filter-3-line"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" id="sortBtn">
-                                    <i class="ri-sort-asc"></i>
-                                </button>
+            <div class="row mb-5 fade-in-up" style="animation-delay: 0.4s;">
+                <div class="col-12">
+                    <div class="glass-card">
+                        <div class="card-header-custom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                            <h6 class="fw-bold m-0"><i class="ri-database-2-fill me-2 text-primary"></i>Data Detail Kejadian</h6>
+                            <div class="search-box">
+                                <i class="ri-search-line search-icon"></i>
+                                <input type="text" id="tableSearch" class="form-control form-control-sm bg-dark border-secondary text-light" placeholder="Cari lokasi...">
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body-custom p-0">
                             <div class="table-responsive">
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text bg-dark border-secondary text-light">
-                                        <i class="ri-search-line"></i>
-                                    </span>
-                                    <input type="text" id="tableSearch" class="form-control bg-dark border-secondary text-light" placeholder="Cari berdasarkan nama lokasi atau kecamatan...">
-                                </div>
-                                <table class="table table-bordered table-dark table-hover" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                                <table class="table table-dark table-hover mb-0 align-middle" id="dataTable">
+                                    <thead class="bg-dark-subtle">
                                         <tr>
-                                            <th>Tipe</th>
-                                            <th>Lokasi</th>
-                                            <th>Kecamatan</th>
-                                            <th>Korban</th>
-                                            <th>Aksi</th>
+                                            <th class="py-3 px-4">Status</th>
+                                            <th class="py-3 px-4">Lokasi</th>
+                                            <th class="py-3 px-4">Kecamatan</th>
+                                            <th class="py-3 px-4">Terdampak</th>
+                                            <th class="py-3 px-4 text-end">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody id="dataTableBody">
                                         </tbody>
                                 </table>
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination justify-content-center">
-                                        </ul>
+                            </div>
+                            <div class="p-3 border-top border-secondary d-flex justify-content-end">
+                                <nav>
+                                    <ul class="pagination pagination-sm mb-0 justify-content-end"></ul>
                                 </nav>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 mb-4">
-                    <div class="card shadow mb-4 map-card">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                <i class="ri-map-2-line me-1"></i>Peta Sebaran
-                            </h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <div id="miniMap" style="height: 400px; position: relative;">
-                                <div class="map-legend">
-                                    <h6>Legenda</h6>
-                                    <div class="legend-item">
-                                        <span class="legend-color" style="background-color: #dc3545;"></span>
-                                        <span>Titik Banjir</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="legend-color" style="background-color: #28a745;"></span>
-                                        <span>Titik Genangan</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="legend-color" style="background-color: #ffc107;"></span>
-                                        <span>Area Resiko Tinggi</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
     </main>
 
@@ -357,6 +203,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
     
-    <script type="module" src="/dashboard.js"></script>
+    <script type="module" src="./dashboard.js"></script>
 </body>
 </html>
