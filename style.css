@@ -95,6 +95,7 @@ h1, h2, h3, h4 {
     left: 20px;
     width: 320px;
     z-index: 100;
+    pointer-events: none;
 }
 
 /* Tombol Utility Bawah */
@@ -1024,6 +1025,7 @@ a:hover {
     left: 20px;
     width: 320px;
     z-index: 100;
+    pointer-events: none;
 }
 
 .map-utilities {
@@ -1318,104 +1320,49 @@ a:hover {
     align-items: center;
     position: relative;
 }
+@media (max-width: 768px) {
+    
+    /* ... kode mobile navbar/search lain ... */
 
-/* =========================================
-   8. MAP & POPUP
-   ========================================= */
-.ol-popup {
-    position: absolute;
-    background: var(--bg-card);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-xl);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    bottom: 30px;
-    left: -80px;
-    min-width: 320px;
-    max-width: 400px;
-    color: var(--text-main);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: var(--shadow-xl);
-    animation: popupBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
-               popupFloat 3s ease-in-out infinite,
-               popupGlow 2.4s ease-in-out infinite;
+    /* OVERRIDE POPUP KHUSUS MOBILE */
+    .ol-popup {
+        /* Ubah posisi dari Absolute (nempel di peta) ke Fixed (nempel di layar) */
+        position: fixed !important; 
+        
+        /* Reset posisi top/left bawaan OpenLayers */
+        top: auto !important; 
+        left: 50% !important; 
+        bottom: 20px !important; /* Jarak dari bawah layar */
+        
+        /* Pusatkan horizontal */
+        transform: translateX(-50%) !important; 
+        
+        /* Ukuran lebar */
+        width: 90%; 
+        min-width: unset;
+        max-width: 400px;
+        
+        /* Hilangkan margin */
+        margin: 0;
+        
+        /* Tambahkan animasi slide up */
+        animation: slideUpMobile 0.4s ease-out;
+        
+        /* Pastikan di atas elemen lain */
+        z-index: 2000; 
+    }
+
+    /* Hilangkan panah di mobile agar terlihat rapi seperti kartu */
+    .ol-popup:after, 
+    .ol-popup:before {
+        display: none !important;
+    }
 }
 
-.ol-popup:after, .ol-popup:before {
-    top: 100%;
-    border: solid transparent;
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-
-.ol-popup:after {
-    border-top-color: var(--bg-card);
-    border-width: 15px;
-    left: 80px;
-    margin-left: -15px;
-}
-
-.ol-popup:before {
-    border-top-color: var(--primary);
-    border-width: 16px;
-    left: 80px;
-    margin-left: -16px;
-}
-
-.ol-popup h3 {
-    margin: 0 0 var(--spacing-sm) 0;
-    font-size: 1.6em;
-    font-weight: bold;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.ol-popup p {
-    margin: var(--spacing-sm) 0;
-    font-size: 0.95em;
-    line-height: 1.6;
-    color: var(--text-muted);
-}
-
-.ol-popup .badge {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: #000;
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-    font-size: 0.85em;
-    font-weight: bold;
-    margin: var(--spacing-sm) 0;
-    border: none;
-}
-
-.ol-popup .close-btn, .ol-popup-closer {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-    background: transparent;
-    color: var(--text-muted);
-    border: none;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    border-radius: var(--radius-full);
-}
-
-.ol-popup .close-btn:hover, .ol-popup-closer:hover {
-    background: var(--accent);
-    color: white;
-    transform: rotate(90deg);
+/* Animasi Slide Up khusus Mobile */
+@keyframes slideUpMobile {
+    from { transform: translate(-50%, 100%); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
 }
 
 /* =========================================
@@ -1748,4 +1695,434 @@ body {
 
 .form-control-plaintext{
     color: var(--primary);
+}
+/* =========================================
+   MOBILE RESPONSIVE OVERRIDES
+   ========================================= */
+
+/* 1. Reset & Utilities Baru */
+.btn-glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+.btn-glass:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.05);
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 2. Style Control Card (Grouping) */
+.control-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Scroll area untuk checkbox yang banyak */
+.filter-scroll {
+    max-height: 120px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+/* Scrollbar tipis */
+.filter-scroll::-webkit-scrollbar { width: 4px; }
+.filter-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+/* Grid tombol basemap */
+.basemap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.info-box {
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px dashed rgba(6, 182, 212, 0.3);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--info);
+}
+
+/* 3. Tombol Mobile Toggle (Default Hidden di Desktop) */
+.btn-mobile-menu {
+    display: none; /* Desktop hidden */
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border: none;
+    border-radius: 50%;
+    color: #000;
+    z-index: 101;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+    transition: transform 0.2s;
+}
+.btn-mobile-menu:active { transform: scale(0.9); }
+
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+    
+    /* TAMBAHKAN INI: Agar tembus pandang saat tidak aktif */
+    pointer-events: none; 
+}
+
+/* 4. MEDIA QUERIES (Mobile < 768px) */
+@media (max-width: 768px) {
+    
+    /* Navbar Adjustment */
+    .navbar-custom {
+        padding: 0.5rem 0;
+    }
+    
+    /* Search Bar: Pindah ke Atas Tengah Full Width */
+    .search-container {
+        top: 70px; /* Di bawah navbar */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92%; /* Hampir full width */
+        max-width: none;
+    }
+    
+    .search-container .input-group {
+        border-radius: 50px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.1);
+        pointer-events: auto;
+    }
+
+    /* Tampilkan Tombol Menu Mobile */
+    .btn-mobile-menu {
+        display: flex;
+    }
+
+    /* Transformasi Sidebar Menjadi Bottom Sheet */
+    .map-sidebar {
+        position: fixed;
+        top: auto; /* Reset top */
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-height: 80vh; /* Max tinggi 80% layar */
+        border-radius: 24px 24px 0 0; /* Melengkung atas */
+        transform: translateY(110%); /* Sembunyi ke bawah */
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        z-index: 1000;
+        border: none;
+        box-shadow: 0 -5px 30px rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* State Aktif (Slide Up) */
+    .map-sidebar.active {
+        transform: translateY(0);
+    }
+    
+    /* Overlay Aktif */
+    .mobile-overlay { display: block; }
+.mobile-overlay.active { 
+    opacity: 1; 
+    
+    /* TAMBAHKAN INI: Agar bisa diklik (untuk close) saat aktif */
+    pointer-events: auto; 
+}
+    /* Drag Handle (Garis kecil di atas sheet) */
+    .mobile-drag-handle {
+        width: 40px;
+        height: 4px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 10px;
+        margin: 0 auto 15px auto;
+    }
+
+    /* Agar konten bisa discroll di dalam Bottom Sheet */
+    .sidebar-scroll-content {
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+
+    /* Map Utilities (Zoom Buttons) */
+    .map-utilities {
+        bottom: 100px; /* Naik sedikit agar tidak tertutup tombol menu */
+        right: 15px;
+    }
+
+    /* Popup: Center di tengah layar */
+    .ol-popup {
+        left: 50%;
+        transform: translate(-50%, -20px); /* Center horizontal */
+        bottom: 20px;
+        min-width: auto;
+        width: 90%; /* Lebar 90% layar */
+        max-width: 350px;
+        padding: 15px;
+        border-radius: 16px;
+    }
+    
+    /* Panah popup disembunyikan di mobile agar rapi */
+    .ol-popup:after, .ol-popup:before {
+        display: none;
+    }
+}
+
+/* 1. VARIABLES & RESET */
+:root {
+    --bg-dark: #020617;
+    --bg-card: #0f172a;
+    --primary: #38bdf8;
+    --secondary: #818cf8;
+    --accent: #f43f5e;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    --info: #06b6d4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; width: 100%; overflow: hidden; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* 2. MAP CORE & FIXES */
+#map {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+    /* PENTING UNTUK MOBILE: Mencegah scroll halaman saat geser peta */
+    touch-action: none;
+}
+
+#navbar-root {
+    position: absolute; top: 0; width: 100%; z-index: 999;
+    pointer-events: none; /* Klik tembus */
+}
+#navbar-root * { pointer-events: auto; }
+
+/* 3. SIDEBAR (DESKTOP) */
+.map-sidebar {
+    position: absolute;
+    top: 80px; right: 20px;
+    width: 300px;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    color: white;
+    max-height: calc(100vh - 120px);
+    display: flex; flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sidebar-scroll-content {
+    overflow-y: auto;
+    padding-right: 5px;
+}
+/* Scrollbar custom */
+.sidebar-scroll-content::-webkit-scrollbar { width: 4px; }
+.sidebar-scroll-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+/* 4. UI COMPONENTS */
+.search-container {
+    position: absolute; top: 90px; left: 20px; width: 320px; z-index: 100;
+    pointer-events: none; /* Biarkan klik di sekitar input tembus ke peta */
+}
+.search-container .input-group { pointer-events: auto; }
+
+.map-utilities {
+    position: absolute; bottom: 30px; right: 20px; z-index: 100;
+    display: flex; flex-direction: column;
+}
+
+.btn-glass {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 45px; height: 45px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.btn-glass:hover {
+    background: var(--primary); color: #000; transform: scale(1.05);
+}
+
+.control-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.section-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 10px;
+}
+
+.filter-scroll { max-height: 100px; overflow-y: auto; }
+.filter-scroll::-webkit-scrollbar { width: 3px; }
+.filter-scroll::-webkit-scrollbar-thumb { background: var(--border); }
+
+.basemap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+
+.gradient-text {
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.info-box {
+    background: rgba(6, 182, 212, 0.1); border: 1px dashed rgba(6, 182, 212, 0.3);
+    padding: 8px; border-radius: 8px; font-size: 0.8rem; color: var(--info);
+}
+
+/* 5. POPUP (DESKTOP DEFAULT) */
+.ol-popup {
+    position: absolute;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    bottom: 45px; left: -50px;
+    min-width: 300px; max-width: 380px;
+    color: var(--text-main);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    pointer-events: auto; /* Agar konten bisa diklik */
+    animation: popupFadeIn 0.3s ease;
+}
+.ol-popup:after, .ol-popup:before {
+    top: 100%; border: solid transparent; content: ""; height: 0; width: 0; position: absolute; pointer-events: none;
+}
+.ol-popup:after { border-top-color: var(--bg-card); border-width: 10px; left: 48%; margin-left: -10px; }
+.ol-popup:before { border-top-color: rgba(56, 189, 248, 0.3); border-width: 11px; left: 48%; margin-left: -11px; }
+
+.ol-popup h3 {
+    margin: 0 0 10px 0; font-size: 1.2rem; font-weight: 700;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.ol-popup-closer {
+    text-decoration: none; position: absolute; top: 15px; right: 15px;
+    width: 24px; height: 24px; line-height: 24px; text-align: center;
+    color: var(--text-muted); border-radius: 50%; background: rgba(255,255,255,0.05);
+}
+
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 6. MOBILE RESPONSIVE LAYOUT */
+.btn-mobile-menu { display: none; } /* Default hidden */
+.mobile-overlay { display: none; }
+@media (max-width: 768px) {
+    
+    /* Navbar & Search Adjustment (Biarkan kode ini) */
+    .navbar-custom { padding: 0.5rem 0; }
+    .search-container {
+        top: 70px; left: 50%; transform: translateX(-50%);
+        width: 92%; max-width: none;
+    }
+    .btn-mobile-menu {
+        display: flex; position: absolute; bottom: 30px; left: 20px;
+        width: 50px; height: 50px; background: var(--primary);
+        border: none; border-radius: 50%; color: #000;
+        z-index: 101; font-size: 1.5rem; align-items: center; justify-content: center;
+        box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+    }
+    .map-sidebar {
+        position: fixed; top: auto; bottom: 0; right: 0; left: 0;
+        width: 100%; max-height: 75vh;
+        border-radius: 24px 24px 0 0;
+        transform: translateY(110%);
+        border: none; box-shadow: 0 -5px 30px rgba(0,0,0,0.6);
+        z-index: 2000;
+    }
+    .map-sidebar.active { transform: translateY(0); }
+    .mobile-overlay {
+        display: block; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.6); backdrop-filter: blur(2px);
+        z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+    .mobile-drag-handle {
+        width: 40px; height: 4px; background: rgba(255,255,255,0.2);
+        border-radius: 10px; margin: 0 auto 15px auto;
+    }
+    .map-utilities { bottom: 100px; right: 15px; }
+
+    /* --- PERBAIKAN UTAMA DI SINI --- */
+    .ol-popup {
+        /* Ubah % menjadi vw (Viewport Width) agar tidak gepeng */
+        width: 50vw !important; 
+        min-width: 300px !important; 
+        max-width: 95vw !important;
+        
+        position: fixed !important; 
+        top: auto !important; 
+        bottom: 20px !important;
+        
+        left: 50% !important; 
+        transform: translateX(-50%) !important;
+        
+        margin: 0 !important; 
+        padding: 20px; 
+        border-radius: 16px;
+        z-index: 2100; 
+        animation: slideUpMobile 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    /* Sembunyikan panah di mobile */
+    .ol-popup:after, .ol-popup:before { display: none !important; }
 }

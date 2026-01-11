@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Peta Persebaran Banjir</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -19,93 +19,94 @@
   <div id="map"></div>
 
   <div class="search-container">
-    <div class="input-group shadow-sm">
-      <span class="input-group-text bg-dark border-secondary text-light">
+    <div class="input-group shadow-lg">
+      <span class="input-group-text bg-dark border-0 text-secondary">
         <i class="ri-search-line"></i>
       </span>
-      <input type="text" id="searchBox" class="form-control bg-dark border-secondary text-light" placeholder="Cari Kecamatan / Jalan...">
-      <button class="btn btn-primary" type="button" id="btnSearch">Cari</button>
+      <input type="text" id="searchBox" class="form-control bg-dark border-0 text-light shadow-none" placeholder="Cari Lokasi...">
+      <button class="btn btn-primary" type="button" id="btnSearch"><i class="ri-arrow-right-line"></i></button>
     </div>
   </div>
 
-  <div class="map-sidebar">
-    <div class="sidebar-header mb-3">
-      <h6 class="text-white text-uppercase fw-bold m-0">
-        <i class="ri-settings-3-line me-1"></i> Control Panel
+  <button id="mobileMenuBtn" class="btn-mobile-menu shadow-lg">
+    <i class="ri-equalizer-line"></i>
+  </button>
+
+  <div id="mobileOverlay" class="mobile-overlay"></div>
+
+  <div class="map-sidebar" id="sidebarPanel">
+    <div class="mobile-drag-handle"></div>
+
+    <div class="sidebar-header d-flex justify-content-between align-items-center mb-3">
+      <h6 class="text-white text-uppercase fw-bold m-0 gradient-text">
+        <i class="ri-settings-3-fill me-1"></i> Layer & Filter
       </h6>
+      <button class="btn btn-sm btn-icon text-muted d-lg-none" id="closeMobileMenu">
+        <i class="ri-close-line fs-5"></i>
+      </button>
     </div>
 
-    <div class="control-group mb-4">
-      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Layer Data</label>
-      
-      <div class="form-check form-switch mb-2">
-  <input class="form-check-input" type="checkbox" id="polygon">
-  <label class="form-check-label text-light small" for="polygon">
-    <i class="ri-map-2-line me-1"></i> Area Riau (Polygon)
-  </label>
-</div>
-      
-      <div class="form-check form-switch mb-2">
-        <input class="form-check-input" type="checkbox" id="pekanbaru" checked>
-        <label class="form-check-label text-light small" for="pekanbaru">
-          <i class="ri-building-line me-1"></i> Area Pekanbaru
-        </label>
+    <div class="sidebar-scroll-content">
+      <div class="control-card mb-3">
+        <label class="section-label">Data Layer</label>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="polygon">
+          <label class="form-check-label" for="polygon">Area Riau</label>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="pekanbaru" checked>
+          <label class="form-check-label" for="pekanbaru">Area Pekanbaru</label>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="point" checked>
+          <label class="form-check-label" for="point">Titik Banjir</label>
+        </div>
+        <div class="form-check form-switch mb-2">
+          <input class="form-check-input" type="checkbox" id="point2" checked>
+          <label class="form-check-label" for="point2">Titik Genangan</label>
+        </div>
+      </div>
+
+      <div class="control-card mb-3">
+        <label class="section-label">Filter Wilayah</label>
+        <div id="pekanbaruCheckboxes" class="filter-scroll"></div>
+      </div>
+
+      <div class="control-card mb-3">
+        <label class="section-label">Filter Genangan</label>
+        <div id="genanganCheckboxes" class="filter-scroll"></div>
+      </div>
+
+      <div class="control-card mb-3">
+        <label class="section-label">Tampilan Peta</label>
+        <div class="basemap-grid">
+           <input type="radio" name="basemap" id="bm-osm" value="osm" class="btn-check" checked>
+           <label class="btn btn-outline-secondary btn-sm" for="bm-osm">Standar</label>
+
+           <input type="radio" name="basemap" id="bm-sate" value="sate" class="btn-check">
+           <label class="btn btn-outline-secondary btn-sm" for="bm-sate">Satelit</label>
+
+           <input type="radio" name="basemap" id="bm-dark" value="dark" class="btn-check">
+           <label class="btn btn-outline-secondary btn-sm" for="bm-dark">Dark</label>
+        </div>
+        <select id="basemapSelect" style="display:none">
+            <option value="osm">osm</option>
+            <option value="sate">sate</option>
+            <option value="dark">dark</option>
+        </select>
       </div>
       
-      <div class="form-check form-switch mb-2">
-        <input class="form-check-input" type="checkbox" id="point" checked>
-        <label class="form-check-label text-light small" for="point">
-          <img src="icon/downpour.png" width="16" class="me-1"> Titik Banjir
-        </label>
-      </div>
-      
-      <!-- MENJADI ini -->
-<div class="form-check form-switch mb-2">
-  <input class="form-check-input" type="checkbox" id="point2" checked>
-  <label class="form-check-label text-light small" for="point2">
-    <img src="icon/banjir-icon.png" width="16" class="me-1"> Titik Genangan
-  </label>
-</div>
-    </div>
-
-    <div class="control-group mb-4">
-      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Filter Area Pekanbaru per Kecamatan</label>
-      <div id="pekanbaruCheckboxes" class="form-check">
-        <!-- Checkboxes akan dimasukkan secara otomatis di sini oleh JavaScript -->
-      </div>
-    </div>
-
-    <div class="control-group mb-4">
-      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Filter Titik Genangan per Kecamatan</label>
-      <div id="genanganCheckboxes" class="form-check">
-        <!-- Checkboxes akan dimasukkan secara otomatis di sini oleh JavaScript -->
-      </div>
-    </div>
-
-    <div class="control-group mb-4">
-      <label class="text-muted text-uppercase small fw-bold mb-2" style="font-size: 0.75rem;">Tipe Peta</label>
-      <select class="form-select form-select-sm bg-dark text-light border-secondary" id="basemapSelect">
-        <option value="osm">OpenStreetMap (Standar)</option>
-        <option value="sate">Satelit (Esri World)</option>
-        <option value="dark">Dark Mode (CartoDB)</option>
-      </select>
-    </div>
-
-    <hr class="border-secondary">
-
-    <div>
-      <label class="text-muted text-uppercase small fw-bold" style="font-size: 0.75rem;">Info Kursor</label>
-      <div id="info" class="text-info fw-bold mt-1 small">
-        Arahkan kursor ke peta...
+      <div class="info-box mt-2">
+        <i class="ri-cursor-line me-1"></i> <span id="info">Klik objek pada peta...</span>
       </div>
     </div>
   </div>
 
   <div class="map-utilities">
-    <button class="btn btn-dark border-secondary shadow mb-2" id="btnLocate" title="Lokasi Saya">
+    <button class="btn btn-glass" id="btnLocate" title="Lokasi Saya">
       <i class="ri-gps-fill text-primary"></i>
     </button>
-    <button class="btn btn-dark border-secondary shadow" id="btnHome" title="Reset View">
+    <button class="btn btn-glass" id="btnHome" title="Reset View">
       <i class="ri-home-4-fill"></i>
     </button>
   </div>
@@ -117,5 +118,32 @@
 
   <script type="module" src="./main.js"></script>
   <script src="components/Navbar.js"></script>
+  
+  <script>
+    // Logic Toggle Mobile Menu
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebarPanel');
+    const overlay = document.getElementById('mobileOverlay');
+    const closeBtn = document.getElementById('closeMobileMenu');
+
+    function toggleMenu() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+
+    mobileBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Logic Basemap Radio Button ke Select lama (Bridge)
+    const radios = document.querySelectorAll('input[name="basemap"]');
+    const select = document.getElementById('basemapSelect');
+    radios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            select.value = e.target.value;
+            select.dispatchEvent(new Event('change'));
+        });
+    });
+  </script>
 </body>
 </html>

@@ -9,9 +9,7 @@ import { fromLonLat } from 'ol/proj';
 import { Icon, Style, Stroke, Fill } from 'ol/style.js';
 import Overlay from 'ol/Overlay.js';
 import "ol/ol.css";
-import "./components/Navbar.js";
-
-
+// import "./components/Navbar.js"; // Uncomment jika file ada
 
 /* --- 1. SETUP BASEMAPS --- */
 const sourceOSM = new OSM();
@@ -28,14 +26,14 @@ const baseLayer = new TileLayer({
   zIndex: 0
 });
 
-/* --- 2. LAYER DATA (DENGAN Z-INDEX) --- */
+/* --- 2. LAYER DATA --- */
 const banjir = new VectorLayer({
   source: new VectorSource({ format: new GeoJSON(), url: '/data/banjir.json' }),
   zIndex: 100,
   style: new Style({
     image: new Icon(({
       anchor: [0.5, 1],
-      src: '/icon/downpour.png',
+      src: '/icon/downpour.png', // Pastikan file icon ada
       width: 32, height: 32
     }))
   })
@@ -47,7 +45,7 @@ const genangan = new VectorLayer({
   style: new Style({
     image: new Icon(({
       anchor: [0.5, 1],
-      src: '/icon/banjir-icon.png',
+      src: '/icon/banjir-icon.png', // Pastikan file icon ada
       width: 32, height: 32
     }))
   })
@@ -55,49 +53,35 @@ const genangan = new VectorLayer({
 
 const riau = new VectorLayer({
   source: new VectorSource({ format: new GeoJSON(), url: '/data/polygon_riau.json' }),
-  visible: false, // Layer akan disembunyikan saat pertama kali dimuat
+  visible: false,
   zIndex: 10,
   style: {
-    'fill-color': [
-      'interpolate', ['linear'], ['get', 'OBJECTID'],
-      1, 'rgba(255, 255, 51, 0.4)',
-      1283, 'rgba(51, 88, 255, 0.4)',
-    ],
+    'fill-color': ['interpolate', ['linear'], ['get', 'OBJECTID'], 1, 'rgba(255, 255, 51, 0.4)', 1283, 'rgba(51, 88, 255, 0.4)'],
     'stroke-color': 'rgba(255, 255, 255, 0.3)',
     'stroke-width': 1,
   },
 });
 
 const pekanbaru = new VectorLayer({
-  source: new VectorSource({
-    format: new GeoJSON(),
-    url: '/data/pekan.json'
-  }),
+  source: new VectorSource({ format: new GeoJSON(), url: '/data/pekan.json' }),
   zIndex: 20,
   style: new Style({
-    fill: new Fill({
-      color: 'rgba(255, 153, 0, 0.3)'
-    }),
-    stroke: new Stroke({
-      color: '#ff6600',
-      width: 2
-    })
+    fill: new Fill({ color: 'rgba(255, 153, 0, 0.2)' }),
+    stroke: new Stroke({ color: '#ff6600', width: 2 })
   }),
-  properties: {
-    name: 'pekanbaru'
-  }
+  properties: { name: 'pekanbaru' }
 });
 
-/* --- 3. POPUP & MAP SETUP --- */
+/* --- 3. POPUP CONFIGURATION --- */
 const container = document.getElementById('popup');
 const content_element = document.getElementById('popup-content');
 const closer = document.getElementById('popup-closer');
 
 const overlay = new Overlay({
   element: container,
-  autoPan: { animation: { duration: 250 } },
+  autoPan: { animation: { duration: 250 }, margin: 20 },
   positioning: 'bottom-center',
-  stopEvent: false,
+  stopEvent: true,
   offset: [0, -10]
 });
 
@@ -108,10 +92,7 @@ const map = new Map({
   target: 'map',
   layers: [baseLayer, riau, pekanbaru, banjir, genangan],
   overlays: [overlay],
-  view: new View({
-    center: defaultCenter,
-    zoom: defaultZoom,
-  })
+  view: new View({ center: defaultCenter, zoom: defaultZoom })
 });
 
 /* --- 4. HIGHLIGHT INTERACTION --- */
@@ -126,16 +107,12 @@ const featureOverlay = new VectorLayer({
 });
 
 let highlight;
-
 const highlightFeature = function (pixel) {
   let pointFeature = null;
   let polygonFeature = null;
   map.forEachFeatureAtPixel(pixel, function (feat) {
     const type = feat.getGeometry().getType();
-    if (type === 'Point') {
-      pointFeature = feat;
-      return true;
-    }
+    if (type === 'Point') { pointFeature = feat; return true; }
     if (!polygonFeature) polygonFeature = feat;
   }, { hitTolerance: 5 });
 
@@ -152,10 +129,7 @@ const displayFeatureInfo = function (pixel) {
   let polygonFeature = null;
   map.forEachFeatureAtPixel(pixel, function (feat) {
     const type = feat.getGeometry().getType();
-    if (type === 'Point') {
-      pointFeature = feat;
-      return true;
-    }
+    if (type === 'Point') { pointFeature = feat; return true; }
     if (!polygonFeature) polygonFeature = feat;
   }, { hitTolerance: 5 });
 
@@ -163,18 +137,16 @@ const displayFeatureInfo = function (pixel) {
   const info = document.getElementById('info');
   if (info) {
     if (feature) {
-      const text = feature.get('KABUPATEN') || feature.get('Nama_Pemetaan') ||
-                   feature.get('kecamatan') || feature.get('Kabupaten') ||
-                   feature.get('KECAMATAN') || feature.get('Nama_Kec') ||
-                   'Fitur Terdeteksi';
-      info.innerHTML = text;
+        const props = feature.getProperties();
+        const text = props.Nama_Pemetaan || props.kecamatan || props.Nama_Kec || props.KECAMATAN || 'Fitur Terdeteksi';
+        info.innerHTML = text;
     } else {
-      info.innerHTML = 'Arahkan kursor ke area...';
+        info.innerHTML = 'Klik objek pada peta...';
     }
   }
 };
 
-/* --- 5. EVENT LISTENERS PETA --- */
+/* --- 5. EVENT LISTENERS --- */
 map.on('pointermove', function (evt) {
   if (evt.dragging) return;
   const pixel = map.getEventPixel(evt.originalEvent);
@@ -187,20 +159,13 @@ map.on('singleclick', function (evt) {
   let polygonFeature = null;
   map.forEachFeatureAtPixel(evt.pixel, function (feat) {
     const type = feat.getGeometry().getType();
-    if (type === 'Point') {
-      pointFeature = feat;
-      return true;
-    }
-    if (type === 'Polygon' || type === 'MultiPolygon') {
-      polygonFeature = feat;
-    }
+    if (type === 'Point') { pointFeature = feat; return true; }
+    if (type === 'Polygon' || type === 'MultiPolygon') { polygonFeature = feat; }
   }, { hitTolerance: 10 });
 
   const feature = pointFeature || polygonFeature;
   if (!feature) {
-    overlay.setPosition(undefined);
-    closer.blur();
-    return;
+    overlay.setPosition(undefined); closer.blur(); return;
   }
 
   const geometry = feature.getGeometry();
@@ -209,32 +174,55 @@ map.on('singleclick', function (evt) {
 
   const props = feature.getProperties();
   let content = '';
-
   const isPekanbaruFeature = props.Nama_Kec !== undefined || props.NAMOBJ !== undefined;
 
+  // Render HTML Popup (Menggunakan Bootstrap classes)
   if (props.Nama_Pemetaan) {
-    content = `<div class="popup-header error"><h6 class="mb-0 fw-bold"><i class="ri-alert-fill me-1"></i> Lokasi Banjir</h6></div><div class="p-2"><table class="table table-dark table-sm table-borderless small mb-0" style="background:transparent"><tr><td class="text-secondary">Area</td><td class="fw-bold">${props.Nama_Pemetaan}</td></tr><tr><td class="text-secondary">Korban</td><td class="text-danger fw-bold">${props.Jumlah_Korban || '-'} Jiwa</td></tr></table></div>`;
-  } else if (props.kecamatan || props.jalan || props.coordinates) {
-    content = `<div class="popup-header warning"><h6 class="mb-0 fw-bold text-dark"><i class="ri-rainy-fill me-1"></i> Titik Genangan</h6></div><div class="p-2"><p class="mb-1 small text-secondary">Lokasi:</p><p class="mb-0 fw-bold small">Kec. ${props.kecamatan || '-'}</p><p class="mb-0 small text-white">Jl. ${props.jalan || '-'}</p><p class="mb-0 small text-white">long: ${props.long || '-'}</p><p class="mb-0 small text-white">lat: ${props.lat || '-'}</p></div>`;
+    content = `
+      <h3><i class="ri-alarm-warning-fill text-danger"></i> Lokasi Banjir</h3>
+      <div class="mt-2">
+        <p class="mb-1 fw-bold text-white fs-5">${props.Nama_Pemetaan}</p>
+        <div class="d-flex justify-content-between align-items-center mt-2 p-2 rounded" style="background: rgba(255,255,255,0.05)">
+            <span class="text-muted small">Terdampak</span>
+            <span class="badge bg-danger text-white">${props.Jumlah_Korban || '0'} Jiwa</span>
+        </div>
+      </div>`;
+  } else if (props.kecamatan || props.jalan) {
+    content = `
+      <h3><i class="ri-rainy-line text-info"></i> Titik Genangan</h3>
+      <div class="mt-2">
+         <p class="mb-1 fw-bold text-white">Kec. ${props.kecamatan || '-'}</p>
+         <p class="text-secondary small mb-2"><i class="ri-map-pin-line"></i> Jl. ${props.jalan || '-'}</p>
+      </div>`;
   } else if (isPekanbaruFeature) {
-    content = `<div class="popup-header info"><h6 class="mb-0 fw-bold"><i class="ri-map-pin-line me-1"></i> Wilayah Pekanbaru</h6></div><div class="p-2"><p class="mb-0 fw-bold">${props.Nama_Kec || props.NAMOBJ || '-'}</p><p class="mb-0 small text-white">Kabupaten: ${props.Nama_Kab || props.WADMKD || '-'}</p><p class="mb-0 small text-white">Provinsi: ${props.Nama_Prov || '-'}</p></div>`;
+    content = `
+      <h3><i class="ri-building-2-fill text-warning"></i> Pekanbaru</h3>
+      <div class="mt-2">
+        <p class="mb-1 fw-bold text-white fs-5">${props.Nama_Kec || props.NAMOBJ || '-'}</p>
+        <p class="text-secondary small">Kab: ${props.Nama_Kab || props.WADMKD || '-'}</p>
+      </div>`;
   } else {
-    const nama = props.KECAMATAN || props.DESA || 'Area Riau';
-    content = `<div class="popup-header info"><h6 class="mb-0 fw-bold"><i class="ri-map-pin-line me-1"></i> Info Wilayah Riau</h6></div><div class="p-2"><p class="mb-0 fw-bold">${nama}</p><p class="mb-0 small text-white">Kecamatan: ${props.KECAMATAN || '-'}</p><p class="mb-0 small text-white">Kabupaten: ${props.KABUPATEN || '-'}</p></div>`;
+    content = `
+      <h3><i class="ri-map-2-line"></i> Info Wilayah</h3>
+      <div class="mt-2">
+        <p class="mb-0 text-white">Kec: ${props.KECAMATAN || '-'}</p>
+        <p class="mb-0 text-secondary small">Kab: ${props.KABUPATEN || '-'}</p>
+      </div>`;
   }
 
   content_element.innerHTML = content;
   overlay.setPosition(popupCoordinate);
-  map.getView().animate({ center: popupCoordinate, duration: 400 });
+  
+  // Animasi pan ke popup
+  map.getView().animate({ center: popupCoordinate, duration: 500, easing: (t) => t * (2 - t) });
 });
 
-closer.onclick = function () {
-  overlay.setPosition(undefined);
-  closer.blur();
-  return false;
+closer.onclick = function (e) {
+  e.preventDefault();
+  overlay.setPosition(undefined); closer.blur(); return false;
 };
 
-/* --- 6. LOGIKA KONTROL UI --- */
+/* --- 6. UTILITIES (Search & Location) --- */
 const basemapSelect = document.getElementById('basemapSelect');
 if (basemapSelect) {
   basemapSelect.addEventListener('change', function (e) {
@@ -249,21 +237,22 @@ function searchLocation() {
   const keyword = document.getElementById('searchBox').value.toLowerCase();
   if (!keyword) return;
   const view = map.getView();
+  
   const searchInLayer = (layer) => {
     const source = layer.getSource();
     if (source.getState() !== 'ready') return false;
     const features = source.getFeatures();
     for (let feat of features) {
       const props = feat.getProperties();
-      const text = (props.kecamatan || props.Nama_Kec || props.KECAMATAN || props.jalan || props.Nama_Pemetaan || props.Kabupaten || props.NAMOBJ || '').toLowerCase();
+      const text = (props.kecamatan || props.Nama_Kec || props.KECAMATAN || props.jalan || props.Nama_Pemetaan || '').toLowerCase();
       if (text.includes(keyword)) {
         const geometry = feat.getGeometry();
         if (geometry.getType() === 'Point') {
-          const center = geometry.getCoordinates();
-          view.animate({ center: center, zoom: 15, duration: 1000 });
+            const center = geometry.getCoordinates();
+            view.animate({ center: center, zoom: 15, duration: 1000 });
         } else {
-          const extent = geometry.getExtent();
-          view.fit(extent, { padding: [100, 100, 100, 100], maxZoom: 15, duration: 1000 });
+            const extent = geometry.getExtent();
+            view.fit(extent, { padding: [100, 100, 100, 100], maxZoom: 15, duration: 1000 });
         }
         featureOverlay.getSource().clear();
         featureOverlay.getSource().addFeature(feat);
@@ -272,26 +261,18 @@ function searchLocation() {
     }
     return false;
   };
-  if (!searchInLayer(genangan)) {
-    if (!searchInLayer(banjir)) {
-      if (!searchInLayer(pekanbaru)) {
-        if (!searchInLayer(riau)) {
-          alert('Lokasi tidak ditemukan.');
-        }
-      }
-    }
+  
+  if (!searchInLayer(genangan) && !searchInLayer(banjir) && !searchInLayer(pekanbaru)) {
+     alert('Lokasi tidak ditemukan.');
   }
 }
 
 document.getElementById('btnSearch').addEventListener('click', searchLocation);
-document.getElementById('searchBox').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') searchLocation();
-});
+document.getElementById('searchBox').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchLocation(); });
 
 document.getElementById('btnHome').addEventListener('click', () => {
   map.getView().animate({ center: defaultCenter, zoom: defaultZoom, duration: 1000 });
-  featureOverlay.getSource().clear();
-  overlay.setPosition(undefined);
+  featureOverlay.getSource().clear(); overlay.setPosition(undefined);
 });
 
 document.getElementById('btnLocate').addEventListener('click', () => {
@@ -299,192 +280,87 @@ document.getElementById('btnLocate').addEventListener('click', () => {
     navigator.geolocation.getCurrentPosition(function (position) {
       const pos = fromLonLat([position.coords.longitude, position.coords.latitude]);
       map.getView().animate({ center: pos, zoom: 14, duration: 1000 });
-    }, function () {
-      alert("Gagal mengambil lokasi.");
     });
-  } else {
-    alert("Browser tidak mendukung Geolocation.");
-  }
+  } else { alert("Geolocation tidak didukung."); }
 });
 
-// Kontrol untuk layer Riau
-document.getElementById('polygon').addEventListener('change', function () {
-  riau.setVisible(this.checked);
-});
-// Kontrol untuk layer Pekanbaru
-document.getElementById('pekanbaru').addEventListener('change', function () {
-  pekanbaru.setVisible(this.checked);
-});
-// Kontrol untuk layer Banjir
+// Kontrol Layer
+document.getElementById('polygon').addEventListener('change', function () { riau.setVisible(this.checked); });
+document.getElementById('pekanbaru').addEventListener('change', function () { pekanbaru.setVisible(this.checked); });
 document.getElementById('point').addEventListener('change', function () { banjir.setVisible(this.checked); });
-// Kontrol untuk layer Genangan (SUDAH DIPERBAIKI ID-NYA)
 document.getElementById('point2').addEventListener('change', function () { genangan.setVisible(this.checked); });
 
-
-/* --- 7. LOGIKA FILTER TERHUBUNG (GANTI BAGIAN INI) --- */
-
+/* --- 7. LINKED FILTER SYSTEM --- */
 const genanganSource = genangan.getSource();
 const pekanbaruSource = pekanbaru.getSource();
-
 let allGenanganFeatures = [];
 let allPekanbaruFeatures = [];
 
-// Fungsi untuk membuat checkbox Genangan
-function createGenanganCheckboxes() {
-  const checkboxContainer = document.getElementById('genanganCheckboxes');
-  if (!checkboxContainer) return;
-
-  const districts = new Set();
-  allGenanganFeatures.forEach(feature => {
-    const district = feature.get('kecamatan');
-    if (district) districts.add(district);
-  });
-
-  checkboxContainer.innerHTML = '';
-  Array.from(districts).sort().forEach(district => {
-    const div = document.createElement('div');
-    div.className = 'form-check form-check-inline mb-2';
-
-    const input = document.createElement('input');
-    input.className = 'form-check-input';
-    input.type = 'checkbox';
-    input.value = district;
-    input.id = `genangan-${district.replace(/\s+/g, '-')}`;
-
-    const label = document.createElement('label');
-    label.className = 'form-check-label text-light small';
-    label.htmlFor = input.id;
-    label.textContent = district;
-
-    div.appendChild(input);
-    div.appendChild(label);
-    checkboxContainer.appendChild(div);
-  });
+function createCheckboxes(sourceFeatures, containerId, idPrefix, propertyName) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const items = new Set();
+    sourceFeatures.forEach(f => {
+        const val = f.get(propertyName);
+        if(val) items.add(val);
+    });
+    
+    container.innerHTML = '';
+    Array.from(items).sort().forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'form-check mb-1';
+        div.innerHTML = `
+            <input class="form-check-input" type="checkbox" value="${item}" id="${idPrefix}-${item.replace(/\s+/g, '-')}">
+            <label class="form-check-label text-light small" for="${idPrefix}-${item.replace(/\s+/g, '-')}">${item}</label>
+        `;
+        container.appendChild(div);
+    });
 }
 
-// Fungsi untuk membuat checkbox Pekanbaru
-function createPekanbaruCheckboxes() {
-  const checkboxContainer = document.getElementById('pekanbaruCheckboxes');
-  if (!checkboxContainer) return;
-
-  const districts = new Set();
-  allPekanbaruFeatures.forEach(feature => {
-    const district = feature.get('Nama_Kec');
-    if (district) districts.add(district);
-  });
-
-  checkboxContainer.innerHTML = '';
-  Array.from(districts).sort().forEach(district => {
-    const div = document.createElement('div');
-    div.className = 'form-check form-check-inline mb-2';
-
-    const input = document.createElement('input');
-    input.className = 'form-check-input';
-    input.type = 'checkbox';
-    input.value = district;
-    input.id = `pekanbaru-${district.replace(/\s+/g, '-')}`;
-
-    const label = document.createElement('label');
-    label.className = 'form-check-label text-light small';
-    label.htmlFor = input.id;
-    label.textContent = district;
-
-    div.appendChild(input);
-    div.appendChild(label);
-    checkboxContainer.appendChild(div);
-  });
+function filterLayer(source, allFeatures, containerId, propertyName) {
+    const checked = Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(cb => cb.value);
+    source.clear();
+    if(checked.length === 0) source.addFeatures(allFeatures);
+    else source.addFeatures(allFeatures.filter(f => checked.includes(f.get(propertyName))));
 }
 
-// Fungsi filter untuk Genangan
-function filterGenanganByDistrict() {
-  const checkedBoxes = document.querySelectorAll('#genanganCheckboxes input[type="checkbox"]:checked');
-  const selectedDistricts = Array.from(checkedBoxes).map(cb => cb.value);
-
-  genanganSource.clear();
-  if (selectedDistricts.length === 0) {
-    genanganSource.addFeatures(allGenanganFeatures);
-  } else {
-    const filteredFeatures = allGenanganFeatures.filter(feature =>
-      selectedDistricts.includes(feature.get('kecamatan'))
-    );
-    genanganSource.addFeatures(filteredFeatures);
-  }
-}
-
-// Fungsi filter untuk Pekanbaru
-function filterPekanbaruByDistrict() {
-  const checkedBoxes = document.querySelectorAll('#pekanbaruCheckboxes input[type="checkbox"]:checked');
-  const selectedDistricts = Array.from(checkedBoxes).map(cb => cb.value);
-
-  pekanbaruSource.clear();
-  if (selectedDistricts.length === 0) {
-    pekanbaruSource.addFeatures(allPekanbaruFeatures);
-  } else {
-    const filteredFeatures = allPekanbaruFeatures.filter(feature =>
-      selectedDistricts.includes(feature.get('Nama_Kec'))
-    );
-    pekanbaruSource.addFeatures(filteredFeatures);
-  }
-}
-
-// *** FUNGSI BARU UNTUK MENGHUBUNGKAN FILTER ***
 function handleFilterInteraction(event) {
-  // 1. Dapatkan info dari checkbox yang diubah
-  const changedCheckbox = event.target;
-  const district = changedCheckbox.value;
-  const isChecked = changedCheckbox.checked;
-
-  // 2. Tentukan container mana asal perubahan dan mana targetnya
-  const sourceContainerId = changedCheckbox.closest('#genanganCheckboxes, #pekanbaruCheckboxes').id;
-  const targetContainerId = sourceContainerId === 'genanganCheckboxes' ? 'pekanbaruCheckboxes' : 'genanganCheckboxes';
-
-  // 3. Cari checkbox yang sesuai di container lain dan sinkronkan statusnya
-  const correspondingCheckbox = document.querySelector(`#${targetContainerId} input[value="${district}"]`);
-  if (correspondingCheckbox && correspondingCheckbox.checked !== isChecked) {
-    correspondingCheckbox.checked = isChecked;
-  }
-
-  // 4. Jalankan ulang filter untuk KEDUA layer untuk memastikan semuanya sinkron
-  filterGenanganByDistrict();
-  filterPekanbaruByDistrict();
+    const cb = event.target;
+    const val = cb.value;
+    const checked = cb.checked;
+    
+    // Sync checkboxes
+    const sourceId = cb.closest('.filter-scroll').id;
+    const targetId = sourceId === 'genanganCheckboxes' ? 'pekanbaruCheckboxes' : 'genanganCheckboxes';
+    const targetCb = document.querySelector(`#${targetId} input[value="${val}"]`);
+    if(targetCb) targetCb.checked = checked;
+    
+    // Apply filters
+    filterLayer(genanganSource, allGenanganFeatures, 'genanganCheckboxes', 'kecamatan');
+    filterLayer(pekanbaruSource, allPekanbaruFeatures, 'pekanbaruCheckboxes', 'Nama_Kec');
 }
 
-// Fungsi untuk menyiapkan event listener setelah checkbox dibuat
-function setupFilterListeners() {
-  const genanganContainer = document.getElementById('genanganCheckboxes');
-  const pekanbaruContainer = document.getElementById('pekanbaruCheckboxes');
-
-  if (genanganContainer) {
-    genanganContainer.addEventListener('change', handleFilterInteraction);
-  }
-  if (pekanbaruContainer) {
-    pekanbaruContainer.addEventListener('change', handleFilterInteraction);
-  }
+function setupFilters() {
+    createCheckboxes(allGenanganFeatures, 'genanganCheckboxes', 'gen', 'kecamatan');
+    createCheckboxes(allPekanbaruFeatures, 'pekanbaruCheckboxes', 'pku', 'Nama_Kec');
+    
+    ['genanganCheckboxes', 'pekanbaruCheckboxes'].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('change', handleFilterInteraction);
+    });
 }
 
-// Muat data dan inisialisasi semuanya
-let loadedSources = 0;
-function onSourceLoaded() {
-  loadedSources++;
-  if (loadedSources === 2) {
-    createGenanganCheckboxes();
-    createPekanbaruCheckboxes();
-    setupFilterListeners(); // Pasang listener baru
-    filterGenanganByDistrict(); // Tampilkan semua data awal
-    filterPekanbaruByDistrict(); // Tampilkan semua data awal
-  }
+// Loader
+let loadedCount = 0;
+function checkLoad() {
+    loadedCount++;
+    if(loadedCount >= 2) setupFilters();
 }
 
-genanganSource.once('change', function () {
-  if (genanganSource.getState() === 'ready') {
-    allGenanganFeatures = genanganSource.getFeatures();
-    onSourceLoaded();
-  }
+genanganSource.once('change', () => { 
+    if(genanganSource.getState() === 'ready') { allGenanganFeatures = genanganSource.getFeatures(); checkLoad(); } 
 });
-
-pekanbaruSource.once('change', function () {
-  if (pekanbaruSource.getState() === 'ready') {
-    allPekanbaruFeatures = pekanbaruSource.getFeatures();
-    onSourceLoaded();
-  }
+pekanbaruSource.once('change', () => { 
+    if(pekanbaruSource.getState() === 'ready') { allPekanbaruFeatures = pekanbaruSource.getFeatures(); checkLoad(); } 
 });
